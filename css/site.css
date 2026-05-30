@@ -4,16 +4,7 @@
 
 
 /* CUSTOM FONTS */
-@font-face {
-    font-family: 'Open Sans';
-    /* The modern format rule specifically for variable fonts */
-    src: url('./fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype-variations'),
-         url('./fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
-    
-    /* Variable fonts support any weight from 300 (light) to 800 (bold) dynamically */
-    font-weight: 300 800;
-    font-style: normal;
-}
+
 
 /* we can select an html element tag, in this case "body" will apply to the whole document */
 body {
