@@ -1,9 +1,34 @@
-/* we can use a single css file to style all the files in our wwebsite */
+/* CUSTOM FONTS */ 
+/* --- Font 1: Open Sans (Variable Font) --- */ 
+@font-face { 
+    font-family: 'Open Sans Variable'; 
+    src: url('../fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype'); 
+    font-weight: 300 800; /* Supports weights from light to extra bold */ 
+    font-style: normal; 
+} 
+/* --- Font 2: Open Sans Italic (Variable Font) --- */ 
+@font-face { 
+    font-family: 'Open Sans Variable'; 
+    src: url('../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype'); 
+    font-weight: 300 800; /* Supports weights from light to extra bold */ 
+    font-style: italic; /* Tells the browser this file is specifically for italics */ 
+} 
+/* --- Font 3: Oxanium (Sci-Fi/Tech Variable Font) --- */ 
+@font-face { 
+    font-family: 'Oxanium Variable'; 
+    src: url('../fonts/Oxanium/Oxanium-VariableFont_wght.ttf') format('truetype'); 
+    font-weight: 200 800; /* Supports extra-light to extra-bold */ 
+    font-style: normal; 
+} 
+/* --- Font 4: VT323 --- */ 
+@font-face { 
+    font-family: 'VT323'; 
+    src: url('../fonts/VT323/VT323-Regular.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
 
-/* you can pick your own background colors, text colors, and fonts */
-
-
-/* CUSTOM FONTS */
+/* --- Font 4: VT323 */
 @font-face {
     font-family: 'VT323';
     src: url('../fonts/VT323/VT323-Regular.ttf') format('truetype');
@@ -11,6 +36,31 @@
     font-style: normal;
 }
 
+/* --- Span Testing Helper Classes --- */
+.test-opensans {
+    font-family: 'Open Sans Variable', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.test-opensans-italic {
+    font-family: 'Open Sans Variable', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.test-oxanium {
+    font-family: 'Oxanium Variable', sans-serif;
+    font-weight: 500;
+}
+
+.test-vt323 {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem; /* Pixel fonts look better slightly larger */
+}
+
+/* we can use a single css file to style all the files in our wwebsite */
+/* you can pick your own background colors, text colors, and fonts */
 /* we can select an html element tag, in this case "body" will apply to the whole document */
 body {
   background-color: #50808E;
