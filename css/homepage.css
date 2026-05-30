@@ -1,4 +1,15 @@
 /* this css file will only style the homepage of our site */
+/* CUSTOM FONTS */
+@font-face {
+    font-family: 'Open Sans';
+    /* The modern format rule specifically for variable fonts */
+    src: url('./fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype-variations'),
+         url('./fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+    
+    /* Variable fonts support any weight from 300 (light) to 800 (bold) dynamically */
+    font-weight: 300 800;
+    font-style: normal;
+}
 
 .cat-photo {
   margin: 10px;
