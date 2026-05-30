@@ -1,12 +1,6 @@
 /* this css file will only style the homepage of our site */
 
 /* CUSTOM FONTS */
-@font-face {
-    font-family: 'VT323';
-    src: url('./fonts/VT323/VT323-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 .cat-photo {
   margin: 10px;

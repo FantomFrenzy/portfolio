@@ -4,7 +4,12 @@
 
 
 /* CUSTOM FONTS */
-
+@font-face {
+    font-family: 'VT323';
+    src: url('./fonts/VT323/VT323-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* we can select an html element tag, in this case "body" will apply to the whole document */
 body {
@@ -13,7 +18,7 @@ body {
 
 /* we can have rules apply to multiple elements at the same time with commas */
 h1,h2,h3 {
-  font-family: sans-serif;
+  font-family: 'VT323', monospace;
 }
 
 
