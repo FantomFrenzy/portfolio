@@ -8,10 +8,6 @@
     font-style: normal;
 }
 
-body {
-  background-color: #006946;
-  font-family: 'VT323', monospace;
-}
 .cat-photo {
   margin: 10px;
   max-width: 500px;
