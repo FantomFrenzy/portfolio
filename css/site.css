@@ -107,3 +107,12 @@ p, li {
   border: solid 1px #888;
   background-color: #A3C9A8;
 }
+
+/* Text Changes */
+.text-ctr {
+  text-align: center;
+}
+
+.text-idt {
+  text-indent: 4ch;
+}
