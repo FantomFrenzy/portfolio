@@ -35,7 +35,7 @@
     overflow: hidden;
     
     /* Creates the flashing text cursor on the right edge */
-    border-right: 3px solid currentColor; 
+    border-right:  1.5px solid currentColor; 
     
     /* Animation sequence: Reveal text up to 100 characters max, flash cursor */
     animation: 
