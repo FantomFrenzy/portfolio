@@ -28,31 +28,37 @@
     font-style: normal; 
 }
 
-/* The Universal Type Effect */
-.type-effect {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
+/* The Universal Type Effect */ 
+.type-effect { 
+    display: inline-block; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    /* Creates the flashing text cursor on the right edge */ 
+    border-right: 1.5px solid currentColor; 
     
-    /* Creates the flashing text cursor on the right edge */
-    border-right:  1.5px solid currentColor; 
-    
-    /* Animation sequence: Reveal text up to 100 characters max, flash cursor */
+    /* 
+       1. Increased to 8s for a long, steady typing experience.
+       2. Uses 'forwards' to permanently freeze the text when it finishes.
+    */ 
     animation: 
-        pure-css-typing 4s steps(60, end) forwards,
-        flashing-cursor 0.75s step-end infinite;
-}
+        pure-css-typing 8s steps(120, end) forwards, 
+        flashing-cursor 2s step-end infinite; 
+} 
 
-/* Animation to expand the visible text area from zero to full length */
-@keyframes pure-css-typing {
-    from { max-width: 0; }
-    to { max-width: 100ch; } /* 'ch' stands for character width */
-}
+/* 
+   CLEAN TIMELINE: 
+   The text starts at zero and smoothly streams out until it hits your 
+   character limit, remaining fully visible on the screen forever.
+*/ 
+@keyframes pure-css-typing { 
+    from { max-width: 0; } 
+    to { max-width: 200ch; } 
+} 
 
-/* Animation to blink the blinking terminal cursor */
-@keyframes flashing-cursor {
-    from, to { border-color: transparent; }
-    50% { border-color: inherit; }
+/* Animation to blink the blinking terminal cursor */ 
+@keyframes flashing-cursor { 
+    from, to { border-color: transparent; } 
+    50% { border-color: inherit; } 
 }
 
 /* we can use a single css file to style all the files in our website */
