@@ -28,12 +28,31 @@
     font-style: normal; 
 }
 
-/* --- Font 4: VT323 */
-@font-face {
-    font-family: 'VT323';
-    src: url('../fonts/VT323/VT323-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+/* The Universal Type Effect */
+.type-effect {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    
+    /* Creates the flashing text cursor on the right edge */
+    border-right: 3px solid currentColor; 
+    
+    /* Animation sequence: Reveal text up to 100 characters max, flash cursor */
+    animation: 
+        pure-css-typing 4s steps(60, end) forwards,
+        flashing-cursor 0.75s step-end infinite;
+}
+
+/* Animation to expand the visible text area from zero to full length */
+@keyframes pure-css-typing {
+    from { max-width: 0; }
+    to { max-width: 100ch; } /* 'ch' stands for character width */
+}
+
+/* Animation to blink the blinking terminal cursor */
+@keyframes flashing-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: inherit; }
 }
 
 /* --- Span Testing Helper Classes --- */
