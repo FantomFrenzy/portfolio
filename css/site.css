@@ -55,30 +55,7 @@
     50% { border-color: inherit; }
 }
 
-/* --- Span Testing Helper Classes --- */
-.test-opensans {
-    font-family: 'Open Sans Variable', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-}
-
-.test-opensans-italic {
-    font-family: 'Open Sans Variable', sans-serif;
-    font-style: italic;
-    font-weight: 400;
-}
-
-.test-oxanium {
-    font-family: 'Oxanium Variable', sans-serif;
-    font-weight: 500;
-}
-
-.test-vt323 {
-    font-family: 'VT323', monospace;
-    font-size: 1.5rem; /* Pixel fonts look better slightly larger */
-}
-
-/* we can use a single css file to style all the files in our wwebsite */
+/* we can use a single css file to style all the files in our website */
 /* you can pick your own background colors, text colors, and fonts */
 /* we can select an html element tag, in this case "body" will apply to the whole document */
 body {
@@ -86,18 +63,28 @@ body {
 }
 
 /* we can have rules apply to multiple elements at the same time with commas */
-h1,h2,h3 {
-  font-family: 'VT323', monospace;
-}
+/* --- 1. TYPOGRAPHY ASSIGNMENTS --- */ 
+h1 { 
+    font-family: 'VT323', monospace; 
+    font-size: 56px; /* Converted from 3.5rem (3.5 * 16) */
+    color: #1e1e1e; 
+} 
 
+h2, h3 { 
+    font-family: 'Oxanium Variable', sans-serif; 
+    font-weight: 600; 
+    font-size: 28px; /* Converted from 1.75rem (1.75 * 16) */
+    letter-spacing: 1px; 
+} 
 
+p, li { 
+    font-family: 'Open Sans Variable', sans-serif; 
+    font-weight: 400; 
+    line-height: 1.6; 
+    font-size: 16px; /* Converted from 1rem (1 * 16) */
+} 
 
 /* and we can have rules that overlap other rules, both take effect */
-h1 {
-  letter-spacing: 5px;
-  word-spacing: 5px;
-  font-size: 200%;
-}
 
 /* the hashtag in a CSS selector selects an element by id, e.g., id="content" */
 #content {
