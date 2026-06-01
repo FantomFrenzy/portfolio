@@ -100,12 +100,27 @@ p, li {
   background-color: #84B59F;
 }
 
+/* CONTAINER FOR THE COLUMNS */
+.column-container {
+  display: flex;         /* Turns on Flexbox */
+  flex-direction: row;   /* Aligns items side-by-side */
+  gap: 15px;            /* Adds clean space between your columns */
+  margin: 10px;          /* Matches your current layout margins */
+}
+
 /* the period in a CSS selector selects an element by class, e.g., class="minor-section" */
 .minor-section {
-  padding: 10px;
-  margin-bottom: 10px;
+    flex: 1;              
+    padding: 10px;
   border: solid 1px #888;
   background-color: #A3C9A8;
+}
+
+/* RESPONSIVE DESIGN (Crucial for Mobile Phones) */
+@media (max-width: 768px) {
+  .column-container {
+    flex-direction: column; /* Stacks columns back into rows on mobile screens */
+  }
 }
 
 /* Text Changes */
