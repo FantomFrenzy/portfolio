@@ -45,6 +45,15 @@
         flashing-cursor 2s step-end infinite; 
 } 
 
+/* Creates a blinking terminal cursor for our JavaScript typewriter */
+.flashing-cursor-js {
+    border-right: 1.5px solid currentColor;
+    animation: flashing-cursor 1s step-end infinite;
+    display: inline;
+
+    white-space: pre-wrap; 
+}
+
 /* 
    CLEAN TIMELINE: 
    The text starts at zero and smoothly streams out until it hits your 
