@@ -45,7 +45,7 @@ function buildAllRedactedBlocks() {
     } 
     
     // 💡 UNIQUE TRACKER FLAG: We place an asterisk (*) right before the text blocks start
-    screenArray.push("*");
+    // screenArray.push("*"); (testing the flag to see if it prints on screen or not)
     
     // Save the exact array index where this paragraph's text actually starts 
     paragraphStartIndices.push(screenArray.length); 
