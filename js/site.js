@@ -13,7 +13,7 @@ let activeParagraphIndex = 0; // Tracks which paragraph section we are actively 
 let screenArray = [];         // Holds the full master array of characters displayed on screen
 let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph
 let revealIndex = 0;          // Absolute index tracker for our screen decryption loop
-const speed = 6;              // Decryption sweep speed (lower is faster)
+const speed = 30;              // Decryption sweep speed (lower is faster)
 
 function myFunction(param1, param2) { 
   // some code here 
