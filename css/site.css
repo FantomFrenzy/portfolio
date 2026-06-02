@@ -174,8 +174,8 @@ li {
 .link-section {
   padding: 12px;
   margin: 20px auto 10px auto;    /* Centers the box horizontally with 'auto' left/right */
-  border: solid 1px #2D3748;      /* Matches your dark steel gray outline border */
-  background-color: #131622;     /* Matches your shadowed background card */
+  border: solid 1px #4A5568;      /* Matches your dark steel gray outline border */
+  background-color: #000000;     /* Matches your shadowed background card */
   
   /* 🔽 REDUCES THE WIDTH OF THIS MINOR SECTION 🔽 */
   max-width: 400px;              /* Keeps the box slim and small on the screen */
