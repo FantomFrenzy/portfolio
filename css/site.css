@@ -53,9 +53,6 @@
   font-family: 'VT323', monospace; /* Uses your pixel arcade font for the blocks */
   font-size: 22px;                 /* Thickens blocks so they form solid rows */
   letter-spacing: 0.5px;           /* Evens out character block gaps */
-
-  padding-left: 4ch;
-  text-indent: -4ch;
 }
 
 /* Container to give the button some top spacing */
