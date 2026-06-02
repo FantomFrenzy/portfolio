@@ -126,12 +126,22 @@ h2, h3 {
      padding: 0;         /* Clears out any extra invisible browser padding */
 } 
 
-p, li { 
+p { 
     font-family: 'Open Sans Variable', sans-serif; 
     font-weight: 400; 
     line-height: 1.6; 
     font-size: 16px; /* Converted from 1rem (1 * 16) */
     color: #CBD5E1; /* Changed from default color to high-contrast muted silver */
+} 
+
+li { 
+    font-family: 'Open Sans Variable', sans-serif; 
+    font-weight: 400; 
+    line-height: 1.6; 
+    font-size: 16px; /* Converted from 1rem (1 * 16) */
+    color: #CBD5E1; /* Changed from default color to high-contrast muted silver */
+
+    font-style: italic; 
 } 
 
 /* and we can have rules that overlap other rules, both take effect */
