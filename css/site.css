@@ -45,13 +45,14 @@
         flashing-cursor 2s step-end infinite; 
 } 
 
-/* Creates a blinking terminal cursor for our JavaScript typewriter */
+/* Handles our JavaScript typewriter paragraph block styling */
 .flashing-cursor-js {
-    border-right: 1.5px solid currentColor;
-    animation: flashing-cursor 1s step-end infinite;
-    display: inline-block;
-
-    white-space: pre-wrap; 
+  display: inline-block;
+  white-space: pre-wrap;
+  width: 100%;                     /* Forces full width alignment */
+  font-family: 'VT323', monospace; /* Uses your pixel arcade font for the blocks */
+  font-size: 22px;                 /* Thickens blocks so they form solid rows */
+  letter-spacing: 0.5px;           /* Evens out character block gaps */
 }
 
 /* Container to give the button some top spacing */
