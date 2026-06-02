@@ -49,7 +49,7 @@
 .flashing-cursor-js {
     border-right: 1.5px solid currentColor;
     animation: flashing-cursor 1s step-end infinite;
-    display: inline;
+    display: inline-block;
 
     white-space: pre-wrap; 
 }
