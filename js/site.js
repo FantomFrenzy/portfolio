@@ -37,15 +37,18 @@ function buildAllRedactedBlocks() {
   
   for (let p = 0; p < paragraphs.length; p++) { 
     
-    // Save the exact array index where this paragraph section begins
-    paragraphStartIndices.push(screenArray.length); 
-
     // Add line drops and structural layout spaces to the array matrix
     if (p > 0) { 
       screenArray.push("\n\n", " ", " ", " ", " "); 
     } else {
       screenArray.push(" ", " ", " ", " ");
     } 
+    
+    // 💡 UNIQUE TRACKER FLAG: We place an asterisk (*) right before the text blocks start
+    screenArray.push("*");
+    
+    // Save the exact array index where this paragraph's text actually starts 
+    paragraphStartIndices.push(screenArray.length); 
     
     const text = paragraphs[p]; 
     for (let i = 0; i < text.length; i++) { 
@@ -61,8 +64,8 @@ function buildAllRedactedBlocks() {
   // Render all blocks to the screen immediately 
   paragraphElement.textContent = screenArray.join(""); 
   
-  // Initialize our starting reveal position to where paragraph 1 text begins (skipping initial spaces)
-  revealIndex = paragraphStartIndices[0] + 4; 
+  // Initialize our starting reveal position to where paragraph 1 text begins
+  revealIndex = paragraphStartIndices[0]; 
 } 
 
 function processButtonClick() { 
@@ -81,9 +84,7 @@ function revealLoop() {
   const paragraphElement = document.getElementById("typewriter-p"); 
   const generateButton = document.getElementById("generate-btn"); 
   const currentText = paragraphs[activeParagraphIndex]; 
-  
-  // 🔽 UPDATED: Tracking math changed from 6 to 7 to safely push past the layout block grid boundaries
-  const startPos = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 7 : 4);
+  const startPos = paragraphStartIndices[activeParagraphIndex]; 
   const endPos = startPos + currentText.length; 
   
   if (paragraphElement && revealIndex < endPos) { 
@@ -92,6 +93,12 @@ function revealLoop() {
     
     // Overwrite the block with the real letter 
     screenArray[revealIndex] = currentText.charAt(relativeCharPos); 
+    
+    // Clean up the tracker flag character so it doesn't print on screen
+    if (screenArray[startPos - 1] === "*") {
+      screenArray[startPos - 1] = "";
+    }
+    
     paragraphElement.textContent = screenArray.join(""); 
     
     revealIndex++; 
@@ -106,8 +113,8 @@ function revealLoop() {
       generateButton.style.opacity = "1"; 
       generateButton.style.pointerEvents = "auto"; 
       
-      // 🔽 UPDATED: Target reveal loop jump tracking pushed to 7 to fully cross formatting gaps
-      revealIndex = paragraphStartIndices[activeParagraphIndex] + 7; 
+      // Target the next exact text starting point using our clean index tracker array
+      revealIndex = paragraphStartIndices[activeParagraphIndex]; 
     } else { 
       // Everything is completely revealed! Hide the generation button completely 
       generateButton.style.display = "none"; 
@@ -117,3 +124,4 @@ function revealLoop() {
 
 // THE PARTY STARTER
 window.addEventListener("DOMContentLoaded", main);
+
