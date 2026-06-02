@@ -8,6 +8,9 @@
 }
 
 .portfolio-photo {
-  margin: 10px;
-  max-width: 500px;
+  max-width: 500px;     /* Holds at 500px when expanding */
+  width: 100%;          /* Shrinks dynamically according to the minor-section */
+  height: auto;         /* Maintains perfect proportions without stretching */
+  display: block;       
+  margin: 10px auto;    /* Keeps only the photo centered */
 }
