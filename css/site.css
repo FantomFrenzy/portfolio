@@ -47,13 +47,15 @@
 
 /* Handles our JavaScript typewriter paragraph block styling */
 .flashing-cursor-js {
-  display: inline-block;
+  display: block;
   white-space: pre-wrap;
   width: 100%;                     /* Forces full width alignment */
   font-family: 'VT323', monospace; /* Uses your pixel arcade font for the blocks */
   font-size: 22px;                 /* Thickens blocks so they form solid rows */
   letter-spacing: 0.5px;           /* Evens out character block gaps */
-  text-indent: 4ch; 
+
+  padding-left: 4ch;
+  text-indent: -4ch;
 }
 
 /* Container to give the button some top spacing */

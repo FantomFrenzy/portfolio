@@ -1,6 +1,6 @@
-// index.js - Three-Paragraph Interactive Decryption System
-// Author: Ronie Antonio
-// Date: June 2026
+// index.js - Purpose and description here 
+// Author: Ronie Antonio 
+// Date: June 2026 
 
 // Constants 
 const paragraphs = [ 
@@ -13,7 +13,7 @@ let activeParagraphIndex = 0; // Tracks which paragraph section we are actively 
 let screenArray = [];         // Holds the full master array of characters displayed on screen 
 let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph 
 let revealIndex = 0;          // Absolute index tracker for our screen decryption loop 
-const speed = 30;             // Classic typewriter pace (30ms per character)
+const speed = 30;             // Classic typewriter pace (30ms per character) 
 
 function myFunction(param1, param2) { 
   // some code here 
@@ -30,13 +30,13 @@ function main() {
   buildAllRedactedBlocks(); 
 } 
 
-// Generates all three paragraph blocks immediately with flawless alignment
+// Generates all three paragraph blocks immediately so the page is fully redacted on load 
 function buildAllRedactedBlocks() { 
   const paragraphElement = document.getElementById("typewriter-p"); 
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
-    // If it's paragraph 2 or 3, add clean spacing drops first (Removed the \t!)
+    // If it's paragraph 2 or 3, add clean spacing drops first
     if (p > 0) { 
       screenArray.push("\n\n"); 
     } 
@@ -48,18 +48,18 @@ function buildAllRedactedBlocks() {
     for (let i = 0; i < text.length; i++) { 
       let char = text.charAt(i); 
       if (char === " ") { 
-        screenArray.push(" "); 
+        screenArray.push(" "); // Keep normal spacing intact 
       } else { 
-        screenArray.push("█"); 
+        screenArray.push("█"); // Redaction block 
       } 
     } 
   } 
   
-  // Render all blocks to the screen immediately
+  // Render all blocks to the screen immediately 
   paragraphElement.textContent = screenArray.join(""); 
   
   // Initialize our starting reveal position to the beginning of the first paragraph 
-  revealIndex = paragraphStartIndices[0]; 
+  revealIndex = paragraphStartIndices; 
 } 
 
 function processButtonClick() { 
@@ -101,7 +101,7 @@ function revealLoop() {
       generateButton.style.opacity = "1"; 
       generateButton.style.pointerEvents = "auto"; 
       
-      // Update reveal index to bypass the structural line breaks (\n\n\t) and hit the next text start 
+      // Update reveal index to bypass the structural line breaks (\n\n) and hit the next text start 
       revealIndex = paragraphStartIndices[activeParagraphIndex]; 
     } else { 
       // Everything is completely revealed! Hide the generation button completely 
