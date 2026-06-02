@@ -113,5 +113,5 @@ function revealLoop() {
   }
 }
 
-// THE PARTY STARTER
+// THE PARTY STARTER (checking changes)
 window.addEventListener("DOMContentLoaded", main);
