@@ -16,25 +16,49 @@ function myFunction(param1, param2) {
   // return results;
 }
 
-function main() {
-  console.log("Main function started.");
-  // the code that makes everything happen
-  typeWriter(); 
-}
-
-// 3. THE TYPEWRITER FUNCTION
-function typeWriter() {
-  const paragraphElement = document.getElementById("typewriter-p");
+// REPLACED MAIN FUNCTION
+function main() { 
+  console.log("Main function started."); 
   
-  if (paragraphElement && index < textToType.length) {
-    paragraphElement.textContent += textToType.charAt(index);
-    index++;
-    setTimeout(typeWriter, speed);
-  } else if (paragraphElement) {
-    paragraphElement.style.borderRight = "none";
+  // Find the button in your HTML
+  const generateButton = document.getElementById("generate-btn");
+  
+  if (generateButton) {
+    // Listen for a click on the button, then run startTypewriter
+    generateButton.addEventListener("click", startTypewriter);
+  }
+} 
+
+// NEW HELPER FUNCTION (Prevents double-clicking issues)
+function startTypewriter() {
+  const paragraphElement = document.getElementById("typewriter-p");
+  const generateButton = document.getElementById("generate-btn");
+  
+  if (paragraphElement && index === 0) {
+    // Dim the button and lock it so it can't be clicked again while typing
+    generateButton.style.opacity = "0.5";
+    generateButton.style.pointerEvents = "none";
+    
+    // Start the typing loop
+    typeWriter(); 
   }
 }
 
-// 4. THE PARTY STARTER (PUT THIS AT THE VERY END)
-// We replaced your old "main();" with this line so the page loads fully first!
+// REPLACED TYPEWRITER FUNCTION
+function typeWriter() { 
+  const paragraphElement = document.getElementById("typewriter-p"); 
+  
+  if (paragraphElement && index < textToType.length) { 
+    paragraphElement.textContent += textToType.charAt(index); 
+    index++; 
+    setTimeout(typeWriter, speed); 
+  } else if (paragraphElement) { 
+    paragraphElement.style.borderRight = "none"; 
+    
+    // Completely hide the button once the text finishes typing
+    document.getElementById("generate-btn").style.display = "none";
+  } 
+} 
+
+// 4. THE PARTY STARTER (PUT THIS AT THE VERY END) 
 window.addEventListener("DOMContentLoaded", main);

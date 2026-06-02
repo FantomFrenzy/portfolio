@@ -54,6 +54,31 @@
     white-space: pre-wrap; 
 }
 
+/* Container to give the button some top spacing */
+.btn-container {
+  margin-top: 15px;
+}
+
+/* Styles to make the button look like a sleek terminal link */
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #1e1e1e;
+  font-family: 'Oxanium Variable', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover effect when the user mouses over the button */
+.nav-btn:hover {
+  color: #50808E;
+  text-shadow: 0 0 5px rgba(80, 128, 142, 0.5);
+  transform: scale(1.05);
+}
+
 /* 
    CLEAN TIMELINE: 
    The text starts at zero and smoothly streams out until it hits your 
