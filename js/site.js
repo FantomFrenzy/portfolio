@@ -1,6 +1,6 @@
-// index.js - Three-Paragraph Interactive Decryption System
-// Author: Ronie Antonio
-// Date: June 2026
+// index.js - Three-Paragraph Interactive Decryption System 
+// Author: Ronie Antonio 
+// Date: June 2026 
 
 // Constants 
 const paragraphs = [ 
@@ -13,7 +13,7 @@ let activeParagraphIndex = 0; // Tracks which paragraph section we are actively 
 let screenArray = [];         // Holds the full master array of characters displayed on screen 
 let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph 
 let revealIndex = 0;          // Absolute index tracker for our screen decryption loop 
-const speed = 30;             // Classic typewriter pace (30ms per character)
+const speed = 30;             // Classic typewriter pace (30ms per character) 
 
 function myFunction(param1, param2) { 
   // some code here 
@@ -30,17 +30,17 @@ function main() {
   buildAllRedactedBlocks(); 
 } 
 
-// Generates all three paragraph blocks immediately with flawless geometric alignment
+// Generates all three paragraph blocks immediately so the page is fully redacted on load 
 function buildAllRedactedBlocks() { 
   const paragraphElement = document.getElementById("typewriter-p"); 
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
     
-    // 🔽 1. SAVE THE START INDEX FIRST (Before adding line breaks or spaces) 🔽
+    // Save the exact array index where this paragraph section begins
     paragraphStartIndices.push(screenArray.length); 
 
-    // 2. Add structural formatting rules to the array matrix
+    // Add line drops and structural layout spaces to the array matrix
     if (p > 0) { 
       screenArray.push("\n\n", " ", " ", " ", " "); 
     } else {
@@ -51,9 +51,9 @@ function buildAllRedactedBlocks() {
     for (let i = 0; i < text.length; i++) { 
       let char = text.charAt(i); 
       if (char === " ") { 
-        screenArray.push(" "); 
+        screenArray.push(" "); // Keep normal spacing intact 
       } else { 
-        screenArray.push("█"); 
+        screenArray.push("█"); // Redaction block 
       } 
     } 
   } 
@@ -61,8 +61,8 @@ function buildAllRedactedBlocks() {
   // Render all blocks to the screen immediately 
   paragraphElement.textContent = screenArray.join(""); 
   
-  // Initialize our starting reveal position to the absolute beginning of paragraph 1
-  revealIndex = paragraphStartIndices[0]; 
+  // Initialize our starting reveal position to where paragraph 1 text begins (skipping initial spaces)
+  revealIndex = paragraphStartIndices[0] + 4; 
 } 
 
 function processButtonClick() { 
@@ -82,8 +82,8 @@ function revealLoop() {
   const generateButton = document.getElementById("generate-btn"); 
   const currentText = paragraphs[activeParagraphIndex]; 
   
-  // 💡 Calculate exactly where the text letters start, skipping past line breaks and indents
-  const startPos = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 6 : 4);
+  // 🔽 UPDATED: Tracking math changed from 6 to 7 to safely push past the layout block grid boundaries
+  const startPos = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 7 : 4);
   const endPos = startPos + currentText.length; 
   
   if (paragraphElement && revealIndex < endPos) { 
@@ -106,8 +106,8 @@ function revealLoop() {
       generateButton.style.opacity = "1"; 
       generateButton.style.pointerEvents = "auto"; 
       
-      // 💡 Calculate the next exact text starting point for the next click sweep
-      revealIndex = paragraphStartIndices[activeParagraphIndex] + 6; 
+      // 🔽 UPDATED: Target reveal loop jump tracking pushed to 7 to fully cross formatting gaps
+      revealIndex = paragraphStartIndices[activeParagraphIndex] + 7; 
     } else { 
       // Everything is completely revealed! Hide the generation button completely 
       generateButton.style.display = "none"; 
