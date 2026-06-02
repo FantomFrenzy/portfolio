@@ -60,7 +60,7 @@ function typeWriter() {
     
     if (currentParagraphIndex < paragraphs.length) {
       // Unlock button and change text so they can click to continue
-      generateButton.textContent = "[ Continue Reading ]";
+      generateButton.textContent = "[ Generate Text ]";
       generateButton.style.opacity = "1";
       generateButton.style.pointerEvents = "auto";
     } else {
