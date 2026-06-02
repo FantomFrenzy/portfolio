@@ -120,6 +120,10 @@ h2, h3 {
     font-size: 28px; /* Converted from 1.75rem (1.75 * 16) */
     letter-spacing: 1px; 
     color: #E2E8F0; /* Changed from default color to bone/frost white */
+
+     margin-top: 5px;    /* Pulls it closer to the top edge of the box */
+     margin-bottom: 5px; /* Pulls your two columns closer up to the title */
+     padding: 0;         /* Clears out any extra invisible browser padding */
 } 
 
 p, li { 
