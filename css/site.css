@@ -46,13 +46,14 @@
 } 
 
 /* Handles our JavaScript typewriter paragraph block styling */
-.flashing-cursor-js {
-  display: block;
-  white-space: pre-wrap;
-  width: 100%;                     /* Forces full width alignment */
-  font-family: 'VT323', monospace; /* Uses your pixel arcade font for the blocks */
-  font-size: 22px;                 /* Thickens blocks so they form solid rows */
-  letter-spacing: 0.5px;           /* Evens out character block gaps */
+.flashing-cursor-js { 
+  display: block; 
+  white-space: pre-wrap; 
+  width: 100%; /* Forces full width alignment */ 
+  font-family: 'VT323', monospace; /* Uses your pixel arcade font for the blocks */ 
+  font-size: 22px; /* Thickens blocks so they form solid rows */ 
+  letter-spacing: 0.5px; /* Evens out character block gaps */ 
+  color: #E2E8F0; /* Clinical frost white blocks/text */
 }
 
 /* Container to give the button some top spacing */
@@ -64,7 +65,7 @@
 .nav-btn {
   background: transparent;
   border: none;
-  color: #1e1e1e;
+  color: #A0AEC0; /* Muted silver text at rest */
   font-family: 'Oxanium Variable', sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -76,7 +77,7 @@
 /* Hover effect when the user mouses over the button */
 .nav-btn:hover {
   color: #50808E;
-  text-shadow: 0 0 5px rgba(80, 128, 142, 0.5);
+  text-shadow: 0 0 10px #E2E8F0; /* Stark silver-white glow aura */  
   transform: scale(1.05);
 }
 
@@ -100,7 +101,8 @@
 /* you can pick your own background colors, text colors, and fonts */
 /* we can select an html element tag, in this case "body" will apply to the whole document */
 body {
-  background-color: #50808E;
+    background-color: #08090C; 
+    margin: 0;
 }
 
 /* we can have rules apply to multiple elements at the same time with commas */
@@ -108,7 +110,8 @@ body {
 h1 { 
     font-family: 'VT323', monospace; 
     font-size: 56px; /* Converted from 3.5rem (3.5 * 16) */
-    color: #1e1e1e; 
+    color: #FFFFFF; /* Changed from near-black to stark glowing white */
+    text-shadow: 0 0 4px rgba(226, 232, 240, 0.2);
 } 
 
 h2, h3 { 
@@ -116,6 +119,7 @@ h2, h3 {
     font-weight: 600; 
     font-size: 28px; /* Converted from 1.75rem (1.75 * 16) */
     letter-spacing: 1px; 
+    color: #E2E8F0; /* Changed from default color to bone/frost white */
 } 
 
 p, li { 
@@ -123,32 +127,33 @@ p, li {
     font-weight: 400; 
     line-height: 1.6; 
     font-size: 16px; /* Converted from 1rem (1 * 16) */
+    color: #CBD5E1; /* Changed from default color to high-contrast muted silver */
 } 
 
 /* and we can have rules that overlap other rules, both take effect */
 
 /* the hashtag in a CSS selector selects an element by id, e.g., id="content" */
 #content {
-  margin: 10px;
-  padding: 10px;
-  border: solid 1px #888;
-  background-color: #84B59F;
+    margin: 10px;
+    padding: 10px;
+    border: solid 1px #2D3748; /* Changed to dark steel gray outline border */
+    background-color: #0F111A; /* Changed from green to clinical dark navy interior layer */
 }
 
 /* CONTAINER FOR THE COLUMNS */
 .column-container {
-  display: flex;         /* Turns on Flexbox */
-  flex-direction: row;   /* Aligns items side-by-side */
-  gap: 15px;            /* Adds clean space between your columns */
-  margin: 10px;          /* Matches your current layout margins */
+    display: flex;         /* Turns on Flexbox */
+    flex-direction: row;   /* Aligns items side-by-side */
+    gap: 15px;            /* Adds clean space between your columns */
+    margin: 10px;          /* Matches your current layout margins */
 }
 
 /* the period in a CSS selector selects an element by class, e.g., class="minor-section" */
 .minor-section {
-    flex: 1;              
-    padding: 10px;
-  border: solid 1px #888;
-  background-color: #A3C9A8;
+  flex: 1;              
+  padding: 10px;
+  border: solid 1px #2D3748; /* Changed to dark steel gray outline border */
+  background-color: #131622; /* Changed from green to shadowed background card */
 }
 
 /* RESPONSIVE DESIGN (Crucial for Mobile Phones) */
