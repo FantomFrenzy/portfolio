@@ -182,7 +182,7 @@ li {
   background-color: #000000;     /* Matches your shadowed background card */
   
   /* 🔽 REDUCES THE WIDTH OF THIS MINOR SECTION 🔽 */
-  max-width: 400px;              /* Keeps the box slim and small on the screen */
+  max-width: 600px;              /* Keeps the box slim and small on the screen */
   width: 100%;                   /* Responsively scales down on small mobile displays */
   box-sizing: border-box;
 }
