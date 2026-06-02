@@ -9,66 +9,109 @@ const paragraphs = [
   "Together, these elements form a practice centered on reinterpretations and emotional atmosphere. Whether it is through realism, monochromatic-esque compositions or horror- influenced media and storytelling, I seek to examine how familiar things can be made strange again and how that same strangeness can reveal something honest beneath the hardened surface."
 ];
 
-let currentParagraphIndex = 0; // Tracks which paragraph we are on (0, 1, or 2)
-let charIndex = 0;             // Tracks character position inside the active paragraph
-const speed = 30;              // Typing speed per letter
+let activeParagraphIndex = 0; // Tracks which paragraph section we are actively unredacting
+let screenArray = [];         // Holds the full master array of characters displayed on screen
+let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph
+let revealIndex = 0;          // Absolute index tracker for our screen decryption loop
+const speed = 6;              // Decryption sweep speed (lower is faster)
 
 function myFunction(param1, param2) { 
   // some code here 
 } 
 
-function main() { 
-  console.log("Main function started."); 
-  const generateButton = document.getElementById("generate-btn"); 
-  if (generateButton) { 
-    generateButton.addEventListener("click", startTypewriter); 
-  } 
-} 
+function main() {
+  console.log("Main function started.");
+  
+  const generateButton = document.getElementById("generate-btn");
+  if (generateButton) {
+    generateButton.addEventListener("click", processButtonClick);
+  }
 
-function startTypewriter() {
+  // Generate ALL redacted blocks for ALL paragraphs right on page load
+  buildAllRedactedBlocks();
+}
+
+// Generates all three paragraph blocks immediately so the page is fully redacted on load
+function buildAllRedactedBlocks() {
+  const paragraphElement = document.getElementById("typewriter-p");
+  if (!paragraphElement) return;
+
+  for (let p = 0; p < paragraphs.length; p++) {
+    // If it's paragraph 2 or 3, add spacing and a tab indentation first
+    if (p > 0) {
+      screenArray.push("\n\n\t");
+    }
+
+    // Save the exact array index where this paragraph's text actually starts
+    paragraphStartIndices.push(screenArray.length);
+
+    const text = paragraphs[p];
+    for (let i = 0; i < text.length; i++) {
+      let char = text.charAt(i);
+      if (char === " ") {
+        screenArray.push(" "); // Keep normal spacing intact
+      } else {
+        screenArray.push("█"); // Redaction block
+      }
+    }
+  }
+
+  // Render all blocks to the screen immediately
+  paragraphElement.textContent = screenArray.join("");
+  
+  // Initialize our starting reveal position to the beginning of the first paragraph
+  revealIndex = paragraphStartIndices[0];
+}
+
+function processButtonClick() {
+  const generateButton = document.getElementById("generate-btn");
+  if (!generateButton) return;
+
+  // Lock button down to prevent double-clicking glitches while the sweep animation runs
+  generateButton.style.opacity = "0.5";
+  generateButton.style.pointerEvents = "none";
+
+  // Start the decoding sweep loop
+  revealLoop();
+}
+
+function revealLoop() {
+  const paragraphElement = document.getElementById("typewriter-p");
   const generateButton = document.getElementById("generate-btn");
   
-  // Only run if we still have paragraphs left to type
-  if (currentParagraphIndex < paragraphs.length) {
-    // Lock the button while typing is actively happening
-    generateButton.style.opacity = "0.5";
-    generateButton.style.pointerEvents = "none";
+  const currentText = paragraphs[activeParagraphIndex];
+  const startPos = paragraphStartIndices[activeParagraphIndex];
+  const endPos = startPos + currentText.length;
+
+  if (paragraphElement && revealIndex < endPos) {
+    // Calculate relative character position inside the raw string text
+    const relativeCharPos = revealIndex - startPos;
     
-    // Add spacing and tab indentation for paragraphs 2 and 3 before typing starts
-    const paragraphElement = document.getElementById("typewriter-p");
-    if (currentParagraphIndex > 0) {
-      paragraphElement.textContent += "\n\n\t";
+    // Overwrite the block with the real letter
+    screenArray[revealIndex] = currentText.charAt(relativeCharPos);
+    paragraphElement.textContent = screenArray.join("");
+    
+    revealIndex++;
+    setTimeout(revealLoop, speed);
+  } else if (paragraphElement && generateButton) {
+    // Current paragraph section is fully decrypted! Move tracker to the next stage
+    activeParagraphIndex++;
+
+    if (activeParagraphIndex < paragraphs.length) {
+      // Unlock the button and prompt the user for the next stage
+      generateButton.textContent = "[ Unredact Document ]";
+      generateButton.style.opacity = "1";
+      generateButton.style.pointerEvents = "auto";
+      
+      // Update reveal index to bypass the structural line breaks (\n\n\t) and hit the next text start
+      revealIndex = paragraphStartIndices[activeParagraphIndex];
+    } else {
+      // Everything is completely revealed! Hide cursor and remove button
+      paragraphElement.style.borderRight = "none";
+      generateButton.style.display = "none";
     }
-    
-    typeWriter(); 
   }
 }
 
-function typeWriter() { 
-  const paragraphElement = document.getElementById("typewriter-p"); 
-  const generateButton = document.getElementById("generate-btn");
-  const activeText = paragraphs[currentParagraphIndex];
-  
-  if (paragraphElement && charIndex < activeText.length) { 
-    paragraphElement.textContent += activeText.charAt(charIndex); 
-    charIndex++; 
-    setTimeout(typeWriter, speed); 
-  } else if (paragraphElement) { 
-    // Paragraph finished typing! Move to the next one and reset character counter
-    currentParagraphIndex++;
-    charIndex = 0;
-    
-    if (currentParagraphIndex < paragraphs.length) {
-      // Unlock button and change text so they can click to continue
-      generateButton.textContent = "[ Generate Text ]";
-      generateButton.style.opacity = "1";
-      generateButton.style.pointerEvents = "auto";
-    } else {
-      // All 3 paragraphs are fully typed out! Hide the cursor and the button
-      paragraphElement.style.borderRight = "none"; 
-      generateButton.style.display = "none";
-    }
-  } 
-} 
-
+// THE PARTY STARTER
 window.addEventListener("DOMContentLoaded", main);
