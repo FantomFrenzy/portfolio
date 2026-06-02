@@ -81,7 +81,9 @@ function revealLoop() {
   const paragraphElement = document.getElementById("typewriter-p"); 
   const generateButton = document.getElementById("generate-btn"); 
   const currentText = paragraphs[activeParagraphIndex]; 
-  const startPos = paragraphStartIndices[activeParagraphIndex]; 
+  
+  // 💡 Calculate exactly where the text letters start, skipping past line breaks and indents
+  const startPos = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 6 : 4);
   const endPos = startPos + currentText.length; 
   
   if (paragraphElement && revealIndex < endPos) { 
@@ -104,8 +106,8 @@ function revealLoop() {
       generateButton.style.opacity = "1"; 
       generateButton.style.pointerEvents = "auto"; 
       
-      // Update reveal index to bypass the structural line breaks (\n\n\t) and hit the next text start 
-      revealIndex = paragraphStartIndices[activeParagraphIndex]; 
+      // 💡 Calculate the next exact text starting point for the next click sweep
+      revealIndex = paragraphStartIndices[activeParagraphIndex] + 6; 
     } else { 
       // Everything is completely revealed! Hide the generation button completely 
       generateButton.style.display = "none"; 
