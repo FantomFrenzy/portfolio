@@ -202,3 +202,33 @@ li {
 .text-idt {
   text-indent: 4ch;
 }
+
+/* ERRATIC TWITCHING: Applied directly to links for a horror glitch effect */
+.link-fidget {
+  display: inline-block;
+  animation: fidget-anim 0.4s infinite steps(1);
+}
+
+@keyframes fidget-anim {
+  0% { 
+    transform: translate(0, 0) skewX(0deg); 
+    opacity: 1; 
+  }
+  25% { 
+    transform: translate(-3px, 1px) skewX(-10deg); 
+    opacity: 0.9; 
+    color: #ff3333; /* Sudden creepy blood-red flash */
+  }
+  30% { 
+    transform: translate(0, 0) skewX(0deg); 
+    opacity: 1; 
+  }
+  75% { 
+    transform: translate(2px, -1px) skewX(15deg); 
+    opacity: 0.8; 
+  }
+  80% { 
+    transform: translate(-1px, 2px) skewX(0deg); 
+    opacity: 1; 
+  }
+}
