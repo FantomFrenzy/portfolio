@@ -30,27 +30,30 @@ function main() {
   buildAllRedactedBlocks(); 
 } 
 
-// Generates all three paragraph blocks immediately so the page is fully redacted on load 
+// Generates all three paragraph blocks immediately with flawless geometric alignment
 function buildAllRedactedBlocks() { 
   const paragraphElement = document.getElementById("typewriter-p"); 
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
-    // If it's paragraph 2 or 3, add spacing and a tab indentation first 
-    if (p > 0) { 
-      screenArray.push("\n\n\t"); 
-    } 
     
-    // Save the exact array index where this paragraph's text actually starts 
+    // 🔽 1. SAVE THE START INDEX FIRST (Before adding line breaks or spaces) 🔽
     paragraphStartIndices.push(screenArray.length); 
+
+    // 2. Add structural formatting rules to the array matrix
+    if (p > 0) { 
+      screenArray.push("\n\n", " ", " ", " ", " "); 
+    } else {
+      screenArray.push(" ", " ", " ", " ");
+    } 
     
     const text = paragraphs[p]; 
     for (let i = 0; i < text.length; i++) { 
       let char = text.charAt(i); 
       if (char === " ") { 
-        screenArray.push(" "); // Keep normal spacing intact 
+        screenArray.push(" "); 
       } else { 
-        screenArray.push("█"); // Redaction block 
+        screenArray.push("█"); 
       } 
     } 
   } 
@@ -58,7 +61,7 @@ function buildAllRedactedBlocks() {
   // Render all blocks to the screen immediately 
   paragraphElement.textContent = screenArray.join(""); 
   
-  // Initialize our starting reveal position to the beginning of the first paragraph 
+  // Initialize our starting reveal position to the absolute beginning of paragraph 1
   revealIndex = paragraphStartIndices[0]; 
 } 
 
