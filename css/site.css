@@ -112,6 +112,10 @@ h1 {
     font-size: 56px; /* Converted from 3.5rem (3.5 * 16) */
     color: #FFFFFF; /* Changed from near-black to stark glowing white */
     text-shadow: 0 0 4px rgba(226, 232, 240, 0.2);
+
+    margin-top: 5px;    /* Pulls it closer to the top edge of the box */
+    margin-bottom: 5px; /* Pulls your two columns closer up to the title */
+    padding: 0;         /* Clears out any extra invisible browser padding */
 } 
 
 h2, h3 { 
