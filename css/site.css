@@ -206,29 +206,59 @@ li {
 /* ERRATIC TWITCHING: Applied directly to links for a horror glitch effect */
 .link-fidget {
   display: inline-block;
-  animation: fidget-anim 0.4s infinite steps(1);
+  text-decoration: none;
+  transition: opacity 0.1s ease;
 }
 
-@keyframes fidget-anim {
+/* 🔽 TRIGGERS YOUR INTENSE DIGITAL FEEDBACK ONLY ON HOVER 🔽 */
+.link-fidget:hover {
+  animation: fidget-erratic-anim .25s infinite steps(1);
+}
+
+@keyframes fidget-erratic-anim { 
   0% { 
     transform: translate(0, 0) skewX(0deg); 
     opacity: 1; 
-  }
+    color: #eeeeee; 
+  } 
+  12% { 
+    transform: translate(-4px, 2px) skewX(-12deg); 
+    opacity: 0.85; 
+    color: #ff3333; /* Blood Red */
+  } 
   25% { 
-    transform: translate(-3px, 1px) skewX(-10deg); 
+    transform: translate(3px, -1px) scaleX(-1) skewY(2deg); 
     opacity: 0.9; 
-    color: #ff3333; /* Sudden creepy blood-red flash */
-  }
-  30% { 
+    color: #008000; /* Radioactive Green */
+  } 
+  38% { 
     transform: translate(0, 0) skewX(0deg); 
     opacity: 1; 
-  }
+    color: #eeeeee; 
+  } 
+  50% { 
+    transform: translate(-2px, -3px) scaleY(-1) skewX(15deg); 
+    opacity: 0.75; 
+    color: #4169E1; /* Royal Blue */
+  } 
+  63% { 
+    transform: translate(5px, 4px) skewX(-25deg); 
+    opacity: 0.95; 
+    color: #ff3333; 
+  } 
   75% { 
-    transform: translate(2px, -1px) skewX(15deg); 
+    transform: translate(-3px, -2px) scaleX(-1) scaleY(-1) skewY(-4deg); 
     opacity: 0.8; 
-  }
-  80% { 
-    transform: translate(-1px, 2px) skewX(0deg); 
+    color: #008000; 
+  } 
+  88% { 
+    transform: translate(1px, 5px) skewX(18deg); 
+    opacity: 0.9; 
+    color: #4169E1; 
+  } 
+  100% { 
+    transform: translate(-1px, -1px) skewX(0deg); 
     opacity: 1; 
-  }
+    color: #eeeeee; 
+  } 
 }
