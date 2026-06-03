@@ -140,13 +140,16 @@ p {
 
 li { 
   font-family: 'VT323', monospace; 
-  font-size: 22px;                 /* Matches the 22px paragraph block height */
+  font-size: 28px;                 /* Matches the 22px paragraph block height */
   letter-spacing: 0.5px;           /* Evens out character tracking gaps */
   font-style: normal;              /* Removes the italics so the letters stand straight */
   
   font-weight: 400; 
   line-height: 1.6; 
   color: #CBD5E1; 
+
+  /* 🔽 ADD THIS LINE for clean vertical breathing room 🔽 */
+  padding: 6px 0; 
 } 
 
 /* and we can have rules that overlap other rules, both take effect */
@@ -186,6 +189,13 @@ li {
   max-width: 600px;              /* Keeps the box slim and small on the screen */
   width: 100%;                   /* Responsively scales down on small mobile displays */
   box-sizing: border-box;
+}
+
+/* Removes default bullet points from lists inside the link-section */
+.link-section ul {
+  list-style-type: none; 
+  padding: 0;            
+  margin: 0;             
 }
 
 /* RESPONSIVE DESIGN (Crucial for Mobile Phones) */
