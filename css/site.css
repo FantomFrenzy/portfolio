@@ -195,6 +195,11 @@ li {
   margin: 0;             
 }
 
+/* Centers ONLY the list rows inside your navigation link box */
+.link-section li {
+  text-align: center;
+}
+
 /* RESPONSIVE DESIGN (Crucial for Mobile Phones) */
 @media (max-width: 768px) {
   .column-container {
