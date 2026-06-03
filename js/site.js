@@ -26,13 +26,23 @@ function main() {
     generateButton.addEventListener("click", processButtonClick); 
   } 
   
-  // 🔽 CHECK VAULT: Find out how many paragraphs they already decrypted in the past
-  const savedIndex = localStorage.getItem("highestUnredactedParagraph");
-  if (savedIndex !== null) {
-    activeParagraphIndex = parseInt(savedIndex, 10);
+  // 🔽 NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded 🔽
+  const navigationTiming = performance.getEntriesByType("navigation")[0];
+  
+  if (navigationTiming && navigationTiming.type === "reload") {
+    // 🧠 If they hit the browser's refresh button, explicitly clear their history!
+    localStorage.removeItem("highestUnredactedParagraph");
+    activeParagraphIndex = 0;
+    console.log("Browser refresh detected: System state reset to redacted.");
+  } else {
+    // 🧠 Otherwise (link click/first load), fetch their permanent progress vault history
+    const savedIndex = localStorage.getItem("highestUnredactedParagraph");
+    if (savedIndex !== null) {
+      activeParagraphIndex = parseInt(savedIndex, 10);
+    }
   }
-
-  // Generate blocks or real text right on page load based on their history 
+  
+  // Render paragraphs based on the outcome of our check
   buildAllRedactedBlocks(); 
 } 
 
