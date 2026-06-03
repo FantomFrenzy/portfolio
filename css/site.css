@@ -208,11 +208,12 @@ li {
   display: inline-block;
   text-decoration: none;
   transition: opacity 0.1s ease;
-}
-
-/* 🔽 TRIGGERS YOUR INTENSE DIGITAL FEEDBACK ONLY ON HOVER 🔽 */
-.link-fidget:hover {
+  /* 🔽 APPLIES THE ANIMATION PERMANENTLY ON LOAD 🔽 */
   animation: fidget-erratic-anim .25s infinite steps(1);
+  
+  /* 🧱 FIXES POSITIONING: Prevents the erratic shifting text 
+  from breaking your list box heights or layout padding */
+  position: relative;
 }
 
 @keyframes fidget-erratic-anim { 

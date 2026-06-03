@@ -1,4 +1,4 @@
-// index.js - Three-Paragraph Interactive Decryption System 
+// index.js - Three-Paragraph Interactive Decryption System with Memory
 // Author: Ronie Antonio 
 // Date: June 2026 
 
@@ -26,17 +26,26 @@ function main() {
     generateButton.addEventListener("click", processButtonClick); 
   } 
   
-  // Generate ALL redacted blocks for ALL paragraphs right on page load 
+  // 🔽 CHECK VAULT: Find out how many paragraphs they already decrypted in the past
+  const savedIndex = localStorage.getItem("highestUnredactedParagraph");
+  if (savedIndex !== null) {
+    activeParagraphIndex = parseInt(savedIndex, 10);
+  }
+
+  // Generate blocks or real text right on page load based on their history 
   buildAllRedactedBlocks(); 
 } 
 
-// Generates all three paragraph blocks immediately so the page is fully redacted on load 
+// Generates the paragraphs immediately, honoring their previous decryption history
 function buildAllRedactedBlocks() { 
   const paragraphElement = document.getElementById("typewriter-p"); 
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
     
+    // Save the exact array index where this paragraph section begins
+    paragraphStartIndices.push(screenArray.length); 
+
     // Add line drops and structural layout spaces to the array matrix
     if (p > 0) { 
       screenArray.push("\n\n", " ", " ", " ", " "); 
@@ -44,39 +53,52 @@ function buildAllRedactedBlocks() {
       screenArray.push(" ", " ", " ", " ");
     } 
     
-    // 💡 UNIQUE TRACKER FLAG: We place an asterisk (*) right before the text blocks start
-    // screenArray.push("*"); (testing the flag to see if it prints on screen or not)
-    
-    // Save the exact array index where this paragraph's text actually starts 
-    paragraphStartIndices.push(screenArray.length); 
-    
     const text = paragraphs[p]; 
-    for (let i = 0; i < text.length; i++) { 
-      let char = text.charAt(i); 
-      if (char === " ") { 
-        screenArray.push(" "); // Keep normal spacing intact 
-      } else { 
-        screenArray.push("█"); // Redaction block 
+    
+    // 🔽 CRUCIAL SYSTEM LOGIC: If they already unredacted this section before, load the real letters!
+    if (p < activeParagraphIndex) {
+      for (let i = 0; i < text.length; i++) {
+        screenArray.push(text.charAt(i));
+      }
+    } else {
+      // Otherwise, keep it loaded as encrypted blocks
+      for (let i = 0; i < text.length; i++) { 
+        let char = text.charAt(i); 
+        if (char === " ") { 
+          screenArray.push(" "); 
+        } else { 
+          screenArray.push("█"); 
+        } 
       } 
-    } 
+    }
   } 
   
-  // Render all blocks to the screen immediately 
+  // Render current system loadout state to the screen
   paragraphElement.textContent = screenArray.join(""); 
   
-  // Initialize our starting reveal position to where paragraph 1 text begins
-  revealIndex = paragraphStartIndices[0]; 
+  // Adjust the button view state based on their history
+  const generateButton = document.getElementById("generate-btn");
+  if (generateButton) {
+    if (activeParagraphIndex >= paragraphs.length) {
+      generateButton.style.display = "none"; // Hide button if all 3 are done
+    } else if (activeParagraphIndex > 0) {
+      generateButton.textContent = "[ Unredact Document ]"; // Prompt next stage if mid-way
+    }
+  }
+
+  // Initialize our decryption loop tracker position based on the next unredacted block
+  if (activeParagraphIndex < paragraphs.length) {
+    revealIndex = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 5 : 4); 
+  }
 } 
 
 function processButtonClick() { 
   const generateButton = document.getElementById("generate-btn"); 
   if (!generateButton) return; 
   
-  // Lock button down to prevent double-clicking glitches while the sweep animation runs 
   generateButton.style.opacity = "0.5"; 
   generateButton.style.pointerEvents = "none"; 
   
-  // Start the decoding sweep loop 
   revealLoop(); 
 } 
 
@@ -85,38 +107,31 @@ function revealLoop() {
   const generateButton = document.getElementById("generate-btn"); 
   const currentText = paragraphs[activeParagraphIndex]; 
   const startPos = paragraphStartIndices[activeParagraphIndex]; 
-  const endPos = startPos + currentText.length; 
+  
+  const offset = activeParagraphIndex > 0 ? 5 : 4;
+  const endPos = startPos + offset + currentText.length; 
   
   if (paragraphElement && revealIndex < endPos) { 
-    // Calculate relative character position inside the raw string text 
-    const relativeCharPos = revealIndex - startPos; 
+    const relativeCharPos = revealIndex - (startPos + offset); 
     
-    // Overwrite the block with the real letter 
     screenArray[revealIndex] = currentText.charAt(relativeCharPos); 
-    
-    // Clean up the tracker flag character so it doesn't print on screen
-    if (screenArray[startPos - 1] === "*") {
-      screenArray[startPos - 1] = "";
-    }
-    
     paragraphElement.textContent = screenArray.join(""); 
     
     revealIndex++; 
     setTimeout(revealLoop, speed); 
   } else if (paragraphElement && generateButton) { 
-    // Current paragraph section is fully decrypted! Move tracker to the next stage 
     activeParagraphIndex++; 
     
+    // 🔽 SAVE TO VAULT: Remember that they successfully decrypted this paragraph stage
+    localStorage.setItem("highestUnredactedParagraph", activeParagraphIndex);
+    
     if (activeParagraphIndex < paragraphs.length) { 
-      // Unlock the button and prompt the user for the next stage 
       generateButton.textContent = "[ Unredact Document ]"; 
       generateButton.style.opacity = "1"; 
       generateButton.style.pointerEvents = "auto"; 
       
-      // Target the next exact text starting point using our clean index tracker array
-      revealIndex = paragraphStartIndices[activeParagraphIndex]; 
+      revealIndex = paragraphStartIndices[activeParagraphIndex] + 5; 
     } else { 
-      // Everything is completely revealed! Hide the generation button completely 
       generateButton.style.display = "none"; 
     } 
   } 
@@ -124,4 +139,3 @@ function revealLoop() {
 
 // THE PARTY STARTER
 window.addEventListener("DOMContentLoaded", main);
-
