@@ -139,13 +139,14 @@ p {
 } 
 
 li { 
-    font-family: 'Open Sans Variable', sans-serif; 
-    font-weight: 400; 
-    line-height: 1.6; 
-    font-size: 16px; /* Converted from 1rem (1 * 16) */
-    color: #CBD5E1; /* Changed from default color to high-contrast muted silver */
-
-    font-style: italic; 
+  font-family: 'VT323', monospace; 
+  font-size: 22px;                 /* Matches the 22px paragraph block height */
+  letter-spacing: 0.5px;           /* Evens out character tracking gaps */
+  font-style: normal;              /* Removes the italics so the letters stand straight */
+  
+  font-weight: 400; 
+  line-height: 1.6; 
+  color: #CBD5E1; 
 } 
 
 /* and we can have rules that overlap other rules, both take effect */
@@ -208,10 +209,10 @@ li {
   display: inline-block;
   text-decoration: none;
   transition: opacity 0.1s ease;
-  /* 🔽 APPLIES THE ANIMATION PERMANENTLY ON LOAD 🔽 */
+  /* APPLIES THE ANIMATION PERMANENTLY ON LOAD */
   animation: fidget-erratic-anim .25s infinite steps(1);
   
-  /* 🧱 FIXES POSITIONING: Prevents the erratic shifting text 
+  /* FIXES POSITIONING: Prevents the erratic shifting text 
   from breaking your list box heights or layout padding */
   position: relative;
 }

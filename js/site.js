@@ -26,16 +26,16 @@ function main() {
     generateButton.addEventListener("click", processButtonClick); 
   } 
   
-  // 🔽 NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded 🔽
+  // NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded
   const navigationTiming = performance.getEntriesByType("navigation")[0];
   
   if (navigationTiming && navigationTiming.type === "reload") {
-    // 🧠 If they hit the browser's refresh button, explicitly clear their history!
+    // If they hit the browser's refresh button, explicitly clear their history!
     localStorage.removeItem("highestUnredactedParagraph");
     activeParagraphIndex = 0;
     console.log("Browser refresh detected: System state reset to redacted.");
   } else {
-    // 🧠 Otherwise (link click/first load), fetch their permanent progress vault history
+    // Otherwise (link click/first load), fetch their permanent progress vault history
     const savedIndex = localStorage.getItem("highestUnredactedParagraph");
     if (savedIndex !== null) {
       activeParagraphIndex = parseInt(savedIndex, 10);
@@ -65,7 +65,7 @@ function buildAllRedactedBlocks() {
     
     const text = paragraphs[p]; 
     
-    // 🔽 CRUCIAL SYSTEM LOGIC: If they already unredacted this section before, load the real letters!
+    // CRUCIAL SYSTEM LOGIC: If they already unredacted this section before, load the real letters!
     if (p < activeParagraphIndex) {
       for (let i = 0; i < text.length; i++) {
         screenArray.push(text.charAt(i));
@@ -132,7 +132,7 @@ function revealLoop() {
   } else if (paragraphElement && generateButton) { 
     activeParagraphIndex++; 
     
-    // 🔽 SAVE TO VAULT: Remember that they successfully decrypted this paragraph stage
+    // SAVE TO VAULT: Remember that they successfully decrypted this paragraph stage
     localStorage.setItem("highestUnredactedParagraph", activeParagraphIndex);
     
     if (activeParagraphIndex < paragraphs.length) { 
