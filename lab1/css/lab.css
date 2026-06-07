@@ -1,9 +1,18 @@
-/* Here we can set styles for this lab page that we don't want to effect others pages */
+/* lab.css - Specific styling overrides for Lab Pages */
 
-/* the period in a CSS selector selects an element by class, e.g., class="minor-section" */
 .minor-section {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: solid 1px #888;
-    background-color: #DDD8C4;
-  }
+  padding: 10px;
+  margin-bottom: 15px;
+  /* Matches the dark steel gray outline border from your homepage */
+  border: solid 1px #2D3748; 
+  /* Matches the shadowed background card color */
+  background-color: #131622; 
+}
+
+/* Ensure headings inside lab sections use your custom tech/sci-fi fonts */
+.minor-section h2 {
+  font-family: 'Oxanium Variable', sans-serif;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-top: 0;
+}
