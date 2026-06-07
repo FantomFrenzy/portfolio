@@ -13,7 +13,7 @@ let activeParagraphIndex = 0; // Tracks which paragraph section we are actively 
 let screenArray = [];         // Holds the full master array of characters displayed on screen 
 let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph 
 let revealIndex = 0;          // Absolute index tracker for our screen decryption loop 
-const speed = 30;             // Classic typewriter pace (30ms per character) 
+const speed = 20;             // Classic typewriter pace (20ms per character) 
 
 function myFunction(param1, param2) { 
   // some code here 
