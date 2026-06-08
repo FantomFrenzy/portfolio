@@ -24,35 +24,3 @@ p {
   letter-spacing: 0.5px;
   line-height: 1.6;
 }
-
-/* THE SCREEN-SAFE TYPING OVERRIDE */
-.type-effect {
-  display: block !important;
-  white-space: normal !important; /* Forces normal line wrapping to fit your flex column container */
-  width: 100% !important;        /* Prevents horizontal screen spillage */
-  max-height: 0;
-  opacity: 0;
-  animation-fill-mode: forwards !important;
-  
-  /* OVERRIDE SYSTEM: Unlinks the broken max-width timeline and executes our wrapping layout reveal */
-  animation: clean-wrapping-typewriter calc(var(--char-count) * 0.02s) steps(var(--char-count), end) forwards;
-  animation-delay: var(--delay);
-}
-
-/* THE SCREEN REVEAL TIMELINE ENGINE */
-@keyframes clean-wrapping-typewriter {
-  0% {
-    max-height: 0;
-    opacity: 0;
-  }
-  1% {
-    max-height: 1000px; /* Provides full vertical expansion layout room */
-    opacity: 1;
-    clip-path: inset(0 100% 0 0); /* Places a clean mask from the right boundary */
-  }
-  100% {
-    max-height: 1000px;
-    opacity: 1;
-    clip-path: inset(0 0 0 0);    /* Slides open completely to display text columns */
-  }
-}
