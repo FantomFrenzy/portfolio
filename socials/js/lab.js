@@ -2,7 +2,7 @@
 // Author: Ronie Antonio 
 // Date: June 2026 
 
-// Constants - Your exact socials paragraphs
+// Constants - Your exact original socials paragraphs
 const paragraphs = [ 
   "Overview: Primary database module updating on my latest and ongoing illustrations, assets, and processes on my game development journey.", 
   "Operational Frequency: Consistently Inconsistent." 
@@ -13,56 +13,58 @@ let screenArray = [];           // Holds the full master array of characters dis
 let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph 
 let revealIndex = 0;            // Absolute index tracker for our screen decryption loop 
 const speed = 20;               // Character streaming pace matching your homepage configuration (20ms) 
-const storageKey = "highestUnredactedSocial"; // Isolated tracking vault for your socials progress
+
+// FIX 1: Isolated unique storage cache block key name for the Socials page
+const storageKey = "highestUnredactedSocials"; 
 
 function main() { 
   console.log("Socials automated decryption terminal initialized."); 
   
-  // Detect if the user performed a hard browser page refresh
-  const navigationTiming = performance.getEntriesByType("navigation")[0]; 
+  // Detect if the user performed a hard browser page refresh 
+  const navigationTiming = performance.getEntriesByType("navigation"); 
   
-  // FETCH UNIVERSAL TIMESTAMP SYSTEM VALUES
-  const globalResetTime = localStorage.getItem("portfolioLastReset");
-  const localPageVisitTime = localStorage.getItem("socialsLastVisit");
+  // FETCH UNIVERSAL TIMESTAMP SYSTEM VALUES 
+  const globalResetTime = localStorage.getItem("portfolioLastReset"); 
+  const localPageVisitTime = localStorage.getItem("socialsLastVisit"); 
   
-  // MATH TIMING GATE: True if homepage refreshed *after* our last visit here
-  let homepageSignaledReset = false;
-  if (globalResetTime && localPageVisitTime) {
-    if (parseInt(globalResetTime, 10) > parseInt(localPageVisitTime, 10)) {
-      homepageSignaledReset = true;
-    }
-  }
-
-  // EXECUTE STORAGE CLEARING RULES
-  if ((navigationTiming && navigationTiming.type === "reload") || homepageSignaledReset) {
-    // Clear history if this specific page is refreshed OR if the homepage signaled a fresh sync
-    localStorage.removeItem(storageKey);
-    activeParagraphIndex = 0;
-    console.log("System state reset to redacted due to reload synchronization.");
-  } else {
-    // Hyperlink navigation click or page entry layout: check if they have a saved session
-    const savedIndex = localStorage.getItem(storageKey);
-    if (savedIndex !== null) {
-      // If a save key exists, lock it in so it stays statically unredacted
-      activeParagraphIndex = parseInt(savedIndex, 10);
-      console.log("Existing user session found. Restoring static data state.");
-    } else {
-      // If no save key exists (absolute first visit), start from scratch!
-      activeParagraphIndex = 0;
-      console.log("Absolute first visit detected. Executing typing stream.");
-    }
-  }
+  // MATH TIMING GATE: True if homepage refreshed *after* our last visit here 
+  let homepageSignaledReset = false; 
+  if (globalResetTime && localPageVisitTime) { 
+    if (parseInt(globalResetTime, 10) > parseInt(localPageVisitTime, 10)) { 
+      homepageSignaledReset = true; 
+    } 
+  } 
   
-  // Log the current time as this page's newest visit checkpoint so it stops resetting on link clicks
-  localStorage.setItem("socialsLastVisit", Date.now().toString());
+  // EXECUTE STORAGE CLEARING RULES 
+  if ((navigationTiming && navigationTiming.type === "reload") || homepageSignaledReset) { 
+    // Clear history if this specific page is refreshed OR if the homepage signaled a fresh sync 
+    localStorage.removeItem(storageKey); 
+    activeParagraphIndex = 0; 
+    console.log("System state reset to redacted due to reload synchronization."); 
+  } else { 
+    // Hyperlink navigation click or page entry layout: check if they have a saved session 
+    const savedIndex = localStorage.getItem(storageKey); 
+    if (savedIndex !== null) { 
+      // If a save key exists, lock it in so it stays statically unredacted 
+      activeParagraphIndex = parseInt(savedIndex, 10); 
+      console.log("Existing user session found. Restoring static data state."); 
+    } else { 
+      // If no save key exists (absolute first visit), start from scratch! 
+      activeParagraphIndex = 0; 
+      console.log("Absolute first visit detected. Executing typing stream."); 
+    } 
+  } 
   
-  // Render paragraphs based on the outcome of our check
+  // Log the current time as this page's newest visit checkpoint so it stops resetting on link clicks 
+  localStorage.setItem("socialsLastVisit", Date.now().toString()); 
+  
+  // Render paragraphs based on the outcome of our check 
   buildAllRedactedBlocks(); 
-
-  // AUTOMATIC ENTRY DECRYPTION: Start typing right away without requiring a button click
-  if (activeParagraphIndex < paragraphs.length) {
-    revealLoop();
-  }
+  
+  // AUTOMATIC ENTRY DECRYPTION: Start typing right away without requiring a button click 
+  if (activeParagraphIndex < paragraphs.length) { 
+    revealLoop(); 
+  } 
 } 
 
 // Generates the paragraphs immediately, honoring their previous decryption history
@@ -71,25 +73,25 @@ function buildAllRedactedBlocks() {
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
-    // Save the exact array index where this paragraph section begins
+    // Save the exact array index where this paragraph section begins 
     paragraphStartIndices.push(screenArray.length); 
-
-    // Add line drops and structural layout spaces to the array matrix
+    
+    // Add line drops and structural layout spaces to the array matrix 
     if (p > 0) { 
       screenArray.push("\n\n", " ", " ", " ", " "); 
-    } else {
-      screenArray.push(" ", " ", " ", " ");
+    } else { 
+      screenArray.push(" ", " ", " ", " "); 
     } 
     
     const text = paragraphs[p]; 
     
-    // CRUCIAL SYSTEM LOGIC: If they already unredacted this section before, load the real letters!
-    if (p < activeParagraphIndex) {
-      for (let i = 0; i < text.length; i++) {
-        screenArray.push(text.charAt(i));
-      }
-    } else {
-      // Otherwise, keep it loaded as encrypted blocks
+    // CRUCIAL SYSTEM LOGIC: If they already unredacted this section before, load the real letters! 
+    if (p < activeParagraphIndex) { 
+      for (let i = 0; i < text.length; i++) { 
+        screenArray.push(text.charAt(i)); 
+      } 
+    } else { 
+      // Otherwise, keep it loaded as encrypted blocks 
       for (let i = 0; i < text.length; i++) { 
         let char = text.charAt(i); 
         if (char === " ") { 
@@ -98,16 +100,16 @@ function buildAllRedactedBlocks() {
           screenArray.push("█"); 
         } 
       } 
-    }
+    } 
   } 
   
-  // Render current system loadout state to the screen
+  // Render current system loadout state to the screen 
   paragraphElement.textContent = screenArray.join(""); 
   
-  // Initialize our decryption loop tracker position based on the next unredacted block
-  if (activeParagraphIndex < paragraphs.length) {
+  // Initialize our decryption loop tracker position based on the next unredacted block 
+  if (activeParagraphIndex < paragraphs.length) { 
     revealIndex = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 5 : 4); 
-  }
+  } 
 } 
 
 function revealLoop() { 
@@ -115,7 +117,7 @@ function revealLoop() {
   const currentText = paragraphs[activeParagraphIndex]; 
   const startPos = paragraphStartIndices[activeParagraphIndex]; 
   
-  const offset = activeParagraphIndex > 0 ? 5 : 4;
+  const offset = activeParagraphIndex > 0 ? 5 : 4; 
   const endPos = startPos + offset + currentText.length; 
   
   if (paragraphElement && revealIndex < endPos) { 
@@ -129,16 +131,16 @@ function revealLoop() {
   } else if (paragraphElement) { 
     activeParagraphIndex++; 
     
-    // SAVE TO VAULT: Remember that they successfully decrypted this paragraph stage
-    localStorage.setItem(storageKey, activeParagraphIndex);
+    // SAVE TO VAULT: Remember that they successfully decrypted this paragraph stage 
+    localStorage.setItem(storageKey, activeParagraphIndex); 
     
     if (activeParagraphIndex < paragraphs.length) { 
       revealIndex = paragraphStartIndices[activeParagraphIndex] + 5; 
-      // FIXED: Cleared the accidental double duplicate loop statement here
-      revealLoop();
+      // FIXED: Cleared the accidental double duplicate loop statement here 
+      revealLoop(); 
     } 
   } 
 } 
 
-// THE PARTY STARTER
+// THE PARTY STARTER 
 window.addEventListener("DOMContentLoaded", main);

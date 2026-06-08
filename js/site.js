@@ -26,9 +26,11 @@ function main() {
     generateButton.addEventListener("click", processButtonClick); 
   } 
   
-  // NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded
-  const navigationTiming = performance.getEntriesByType("navigation")[0]; 
+  // FIX: Safe array verification extraction system
+  const entries = performance.getEntriesByType("navigation");
+  const navigationTiming = entries && entries.length > 0 ? entries[0] : null;
   
+  // Update your check to ensure navigationTiming exists before reading its properties
   if (navigationTiming && navigationTiming.type === "reload") {
     // If they hit the browser's refresh button, explicitly clear their history!
     localStorage.removeItem("highestUnredactedParagraph");
