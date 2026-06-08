@@ -18,19 +18,31 @@ const storageKey = "highestUnredactedSocial"; // Isolated tracking vault for you
 function main() { 
   console.log("Socials automated decryption terminal initialized."); 
   
-  // NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded
+  // FIX: Detect EXACTLY how the page was loaded
   const navigationTiming = performance.getEntriesByType("navigation")[0]; 
-  if (navigationTiming && navigationTiming.type === "reload") {
-    // If they hit the browser's refresh button, explicitly clear their history!
+  
+  if (navigationTiming) {
+    if (navigationTiming.type === "reload") {
+      // Hard refresh: wipe cache and force animation from scratch
+      localStorage.removeItem(storageKey);
+      activeParagraphIndex = 0;
+      console.log("Browser refresh detected: System state reset to redacted.");
+    } else if (navigationTiming.type === "navigate") {
+      // Fresh navigation click from home page: always wipe past history to trigger the typing effect!
+      localStorage.removeItem(storageKey);
+      activeParagraphIndex = 0;
+      console.log("Fresh navigation link entry: Triggering animation sequence.");
+    } else {
+      // Back/Forward buttons or other sessions: pull cached completion layout
+      const savedIndex = localStorage.getItem(storageKey);
+      if (savedIndex !== null) {
+        activeParagraphIndex = parseInt(savedIndex, 10);
+      }
+    }
+  } else {
+    // Safari/Older browser fallback
     localStorage.removeItem(storageKey);
     activeParagraphIndex = 0;
-    console.log("Browser refresh detected: System state reset to redacted.");
-  } else {
-    // Otherwise, fetch their permanent progress vault history
-    const savedIndex = localStorage.getItem(storageKey);
-    if (savedIndex !== null) {
-      activeParagraphIndex = parseInt(savedIndex, 10);
-    }
   }
   
   // Render paragraphs based on the outcome of our check
@@ -111,7 +123,7 @@ function revealLoop() {
     
     if (activeParagraphIndex < paragraphs.length) { 
       revealIndex = paragraphStartIndices[activeParagraphIndex] + 5; 
-      // AUTOMATIC CHAIN RUN: Instantly trigger the next paragraph sequence without stopping
+      // AUTOMATIC CHAIN RUN: Instantly trigger the next paragraph sequence without stopping revealLoop();
       revealLoop();
     } 
   } 
