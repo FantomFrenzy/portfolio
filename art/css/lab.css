@@ -1,0 +1,40 @@
+/* Here we can set styles for this lab page that we don't want to effect others pages */
+
+.minor-section {
+  padding: 10px;
+  margin-bottom: 15px;
+  /* Matches the dark steel gray outline border from your homepage */
+  border: solid 1px #2D3748; 
+  /* Matches the shadowed background card color */
+  background-color: #131622; 
+}
+
+/* Ensure headings inside lab sections use your custom tech/sci-fi fonts */
+.minor-section h2 {
+  font-family: 'Oxanium Variable', sans-serif;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-top: 0;
+}
+
+/* --- THE NEW LIST FIXES --- */
+/* 1. Remove bullet points and default indentation padding from ALL lists on this page */
+.minor-section ul {
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 2. Force every single list item row to perfectly center itself inside its menu container */
+.minor-section li {
+  text-align: center !important;
+  margin-bottom: 10px; /* Adds a clean vertical gap between your game links */
+}
+
+p {
+  font-family: 'VT323', monospace !important;
+  font-size: 22px !important;
+  color: #E2E8F0 !important;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
