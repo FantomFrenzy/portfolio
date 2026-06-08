@@ -25,12 +25,13 @@ p {
   line-height: 1.6;
 }
 
-/* THE OPTIMIZED GLITCHING INSTAGRAM ICON LOGO */
+/* INSTAGRAM LOGO DESIGN ROUTINES */
 .ig-logo {
-  max-width: 64px;       /* Holds at 64px when expanding */
-  width: 100%;           /* Shrinks dynamically according to the minor-section */
-  height: auto;          /* Maintains perfect proportions without stretching */
-  display: inline-block; /* Changed to inline-block so it twitches seamlessly with the text link */
+  max-width: 64px;       
+  width: 100%;           
+  height: auto;          
+  display: inline-block; /* Allows the logo to inherit the fidget shifting mechanics cleanly */
   margin: 10px auto;     
   vertical-align: middle;
+  pointer-events: auto;  /* Explicitly forces the image block to capture the click action */
 }
