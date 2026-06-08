@@ -60,11 +60,18 @@ p {
   width: 100%;
 }
 
-/* Forces the images to divide the horizontal row space evenly (50% split) */
+/* FIX: Forces both photos to divide the available screen row space equally (50/50).
+   The max-width is capped at 400px each, meaning they will never exceed 800px combined 
+   but will safely shrink together to match tight tablet or mobile screens. */
 .game-photo-row .game-photo-extras {
   flex: 1;
-  margin: 0; /* Clears out your default centering margins during row alignment */
+  max-width: 400px; 
+  width: 100%; 
+  height: auto; 
+  display: block;
+  margin: 0; 
 }
+
 
 /* ROW 2: Centers your document anchor link perfectly on the line below */
 .doc-link-container {
