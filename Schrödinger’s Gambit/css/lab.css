@@ -33,47 +33,37 @@ p {
   margin: 10px auto;    /* Keeps only the photo centered */
 }
 
- .game-photo-extras {
-  max-width: 800px;     /* Holds at 500px when expanding */
-  width: 100%;          /* Shrinks dynamically according to the minor-section */
-  height: auto;         /* Maintains perfect proportions without stretching */
-  display: block;       
-  margin: 10px auto;    /* Keeps only the photo centered */
-}
-
 /* ==========================================================================
-   ADDED: THIRD COLUMN MULTI-ROW ALIGNMENT RULES
-   ========================================================================== */
+   UPDATED: RESPONSIVE & CENTERED SIDE-BY-SIDE EXTRA IMAGES
+   ========================================================================= */
 
-/* Sets up Column 3 as a vertical layout block to stack Row 1 on top of Row 2 */
 .documentation-block {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Vertical gap spacing between the image row and the link button */
+  gap: 20px; 
 }
 
-/* ROW 1: Forces your extra game photos to align horizontally side-by-side */
 .game-photo-row {
   display: flex;
   flex-direction: row;
-  gap: 15px; /* Clean horizontal spacing gap between the two images */
+  gap: 15px; 
   width: 100%;
+  /* FIX: Centers the entire row block horizontally within the container */
+  justify-content: center; 
 }
 
-/* FIX: Forces both photos to divide the available screen row space equally (50/50).
-   The max-width is capped at 400px each, meaning they will never exceed 800px combined 
+/* Forces both photos to divide the available screen row space equally (50/50).
+   The max-width is capped at 800px each, meaning they will never exceed 800px combined 
    but will safely shrink together to match tight tablet or mobile screens. */
 .game-photo-row .game-photo-extras {
   flex: 1;
-  max-width: 400px; 
+  max-width: 800px; 
   width: 100%; 
   height: auto; 
   display: block;
   margin: 0; 
 }
 
-
-/* ROW 2: Centers your document anchor link perfectly on the line below */
 .doc-link-container {
   width: 100%;
   text-align: center;
