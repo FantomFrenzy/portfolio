@@ -56,7 +56,7 @@ p {
 /* Forces both photos to divide the available screen row space equally (50/50). */
 .game-photo-row .game-photo-extras { 
   flex: 1; 
-  max-width: 400px; 
+  max-width: 1000px; 
   width: 100%; 
   height: auto; 
   display: block; 
@@ -88,7 +88,7 @@ p {
 
   /* Changes image widths to match your primary game-photo scaling behavior */
   .game-photo-row .game-photo-extras {
-    max-width: 750px;                  /* Capped to align with your top image */
+    max-width: 1000px;                  /* Capped to align with your top image */
     width: 100%;
     margin-bottom: 15px;               /* Adds clean spacing between stacked elements */
   }
