@@ -5,7 +5,7 @@
 // Constants - Your exact socials paragraphs
 const paragraphs = [ 
   "Overview: Primary database module updating on my latest and ongoing illustrations, assets, and processes on my game development journey.", 
-  "Operational Frequency: Consistently Inconsistent."
+  "Operational Frequency: Consistently Inconsistent." 
 ]; 
 
 let activeParagraphIndex = 0;   // Tracks which paragraph section we are actively unredacting 
@@ -21,11 +21,24 @@ function main() {
   // Detect if the user performed a hard browser page refresh
   const navigationTiming = performance.getEntriesByType("navigation")[0]; 
   
-  if (navigationTiming && navigationTiming.type === "reload") {
-    // Hard refresh explicitly clears the memory key to force a clean re-type animation
+  // FETCH UNIVERSAL TIMESTAMP SYSTEM VALUES
+  const globalResetTime = localStorage.getItem("portfolioLastReset");
+  const localPageVisitTime = localStorage.getItem("socialsLastVisit");
+  
+  // MATH TIMING GATE: True if homepage refreshed *after* our last visit here
+  let homepageSignaledReset = false;
+  if (globalResetTime && localPageVisitTime) {
+    if (parseInt(globalResetTime, 10) > parseInt(localPageVisitTime, 10)) {
+      homepageSignaledReset = true;
+    }
+  }
+
+  // EXECUTE STORAGE CLEARING RULES
+  if ((navigationTiming && navigationTiming.type === "reload") || homepageSignaledReset) {
+    // Clear history if this specific page is refreshed OR if the homepage signaled a fresh sync
     localStorage.removeItem(storageKey);
     activeParagraphIndex = 0;
-    console.log("Browser refresh detected: System state reset to redacted.");
+    console.log("System state reset to redacted due to reload synchronization.");
   } else {
     // Hyperlink navigation click or page entry layout: check if they have a saved session
     const savedIndex = localStorage.getItem(storageKey);
@@ -39,6 +52,9 @@ function main() {
       console.log("Absolute first visit detected. Executing typing stream.");
     }
   }
+  
+  // Log the current time as this page's newest visit checkpoint so it stops resetting on link clicks
+  localStorage.setItem("socialsLastVisit", Date.now().toString());
   
   // Render paragraphs based on the outcome of our check
   buildAllRedactedBlocks(); 
@@ -118,7 +134,7 @@ function revealLoop() {
     
     if (activeParagraphIndex < paragraphs.length) { 
       revealIndex = paragraphStartIndices[activeParagraphIndex] + 5; 
-      // AUTOMATIC CHAIN RUN: Instantly trigger the next paragraph sequence without stopping revealLoop();
+      // FIXED: Cleared the accidental double duplicate loop statement here
       revealLoop();
     } 
   } 

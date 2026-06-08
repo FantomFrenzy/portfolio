@@ -1,4 +1,4 @@
-// index.js - Three-Paragraph Interactive Decryption System with Memory
+// site.js - Three-Paragraph Interactive Decryption System with Memory
 // Author: Ronie Antonio 
 // Date: June 2026 
 
@@ -27,13 +27,17 @@ function main() {
   } 
   
   // NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded
-  const navigationTiming = performance.getEntriesByType("navigation")[0];
+  const navigationTiming = performance.getEntriesByType("navigation")[0]; 
   
   if (navigationTiming && navigationTiming.type === "reload") {
     // If they hit the browser's refresh button, explicitly clear their history!
     localStorage.removeItem("highestUnredactedParagraph");
     activeParagraphIndex = 0;
-    console.log("Browser refresh detected: System state reset to redacted.");
+    
+    // UNIVERSAL SYNCHRONIZATION TRIGGER: Drops the high-precision reset clock timestamp
+    localStorage.setItem("portfolioLastReset", Date.now().toString());
+    
+    console.log("Browser refresh detected: Global subpage registers flagged for update.");
   } else {
     // Otherwise (link click/first load), fetch their permanent progress vault history
     const savedIndex = localStorage.getItem("highestUnredactedParagraph");
@@ -52,7 +56,6 @@ function buildAllRedactedBlocks() {
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
-    
     // Save the exact array index where this paragraph section begins
     paragraphStartIndices.push(screenArray.length); 
 
