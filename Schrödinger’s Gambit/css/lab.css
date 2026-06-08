@@ -33,45 +33,68 @@ p {
   margin: 10px auto;    /* Keeps only the photo centered */
 }
 
-/* ==========================================================================
-   UPDATED: RESPONSIVE & CENTERED SIDE-BY-SIDE EXTRA IMAGES
-   ========================================================================= */
+/* ========================================================================== 
+   UPDATED: RESPONSIVE & CENTERED SIDE-BY-SIDE EXTRA IMAGES 
+   ========================================================================= */ 
 
-.documentation-block {
-  display: flex;
-  flex-direction: column;
+.documentation-block { 
+  display: flex; 
+  flex-direction: column; 
   gap: 20px; 
-}
+} 
 
-.game-photo-row {
-  display: flex;
-  flex-direction: row;
+/* DESKTOP MODE: Keeps the extra images locked cleanly side-by-side */
+.game-photo-row { 
+  display: flex; 
+  flex-direction: row; 
   gap: 15px; 
-  width: 100%;
-  /* FIX: Centers the entire row block horizontally within the container */
+  width: 100%; 
+  /* FIX: Centers the entire row block horizontally within the container */ 
   justify-content: center; 
-}
+} 
 
-/* Forces both photos to divide the available screen row space equally (50/50).
-   The max-width is capped at 600px each, meaning they will never exceed 800px combined 
-   but will safely shrink together to match tight tablet or mobile screens. */
-.game-photo-row .game-photo-extras {
-  flex: 1;
+/* Forces both photos to divide the available screen row space equally (50/50). */
+.game-photo-row .game-photo-extras { 
+  flex: 1; 
   max-width: 600px; 
   width: 100%; 
   height: auto; 
-  display: block;
+  display: block; 
   margin: 0; 
+} 
+
+.doc-link-container { 
+  width: 100%; 
+  text-align: center; 
+  margin-top: 5px; 
+} 
+
+.doc-link-container a { 
+  font-family: 'VT323', monospace; 
+  font-size: 22px; 
+  display: inline-block; 
 }
 
-.doc-link-container {
-  width: 100%;
-  text-align: center;
-  margin-top: 5px;
-}
+/* ==========================================================================
+   ADDED: MOBILE RESPONSIVE MEDIA BREAKPOINT (SYNCHRONIZED WITH SITE.CSS)
+   ========================================================================= */
 
-.doc-link-container a {
-  font-family: 'VT323', monospace;
-  font-size: 22px;
-  display: inline-block;
+@media (max-width: 768px) {
+  /* Forces your image row container to switch directions instantly */
+  .game-photo-row {
+    flex-direction: column !important; 
+    align-items: center !important;   /* Centers the images in their vertical stack */
+  }
+
+  /* Changes image widths to match your primary game-photo scaling behavior */
+  .game-photo-row .game-photo-extras {
+    max-width: 500px;                  /* Capped to align with your top image */
+    width: 100%;
+    margin-bottom: 15px;               /* Adds clean spacing between stacked elements */
+  }
+
+  /* Clears out bottom padding on the final image block to keep layouts uniform */
+  .game-photo-row .game-photo-extras:last-of-type {
+    margin-bottom: 0;
+  }
 }
