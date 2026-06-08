@@ -53,11 +53,11 @@ p {
 }
 
 /* Forces both photos to divide the available screen row space equally (50/50).
-   The max-width is capped at 800px each, meaning they will never exceed 800px combined 
+   The max-width is capped at 600px each, meaning they will never exceed 800px combined 
    but will safely shrink together to match tight tablet or mobile screens. */
 .game-photo-row .game-photo-extras {
   flex: 1;
-  max-width: 800px; 
+  max-width: 600px; 
   width: 100%; 
   height: auto; 
   display: block;
