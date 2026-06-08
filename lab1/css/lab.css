@@ -24,3 +24,11 @@ p {
   letter-spacing: 0.5px;
   line-height: 1.6;
 }
+
+.ig-logo {
+  max-width: 64px;     /* Holds at 64px when expanding */
+  width: 100%;          /* Shrinks dynamically according to the minor-section */
+  height: auto;         /* Maintains perfect proportions without stretching */
+  display: block;       
+  margin: 10px auto;    /* Keeps only the photo centered */
+}
