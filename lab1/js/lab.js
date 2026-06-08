@@ -2,59 +2,71 @@
 // Author: Ronie Antonio 
 // Date: June 2026 
 
+// Constants - Your exact socials paragraphs
 const paragraphs = [ 
-  "Overview: Primary database module updating on the latest and ongoing illustration, assets, and progress on a game's development process.", 
-  "Operational Frequency: Consistently Inconsistent."
+  "Primary database module tracking ongoing illustrations, design notes, and character layout sheets. This interface aggregates rough concept sketches, atmospheric environment adjustments, and chronological workflow progression metrics from current game development assets.", 
+  "Operational frequency: Frequent narrative stream updates focusing on the structural friction between stark monochromatic contrasts and underlying dark realism." 
 ]; 
 
-let activeParagraphIndex = 0;   
-let screenArray = [];           
-let paragraphStartIndices = []; 
-let revealIndex = 0;            
-const speed = 20;               
-const storageKey = "highestUnredactedSocial"; 
+let activeParagraphIndex = 0;   // Tracks which paragraph section we are actively unredacting 
+let screenArray = [];           // Holds the full master array of characters displayed on screen 
+let paragraphStartIndices = []; // Stores the exact starting array position of each paragraph 
+let revealIndex = 0;            // Absolute index tracker for our screen decryption loop 
+const speed = 20;               // Character streaming pace matching your homepage configuration (20ms) 
+const storageKey = "highestUnredactedSocial"; // Isolated tracking vault for your socials progress
 
 function main() { 
   console.log("Socials automated decryption terminal initialized."); 
   
-  const navigationTiming = performance.getEntriesByType("navigation"); 
+  // NEW SYSTEM CHECK: Find out EXACTLY how the page was loaded
+  const navigationTiming = performance.getEntriesByType("navigation")[0]; 
   if (navigationTiming && navigationTiming.type === "reload") {
+    // If they hit the browser's refresh button, explicitly clear their history!
     localStorage.removeItem(storageKey);
     activeParagraphIndex = 0;
+    console.log("Browser refresh detected: System state reset to redacted.");
   } else {
+    // Otherwise, fetch their permanent progress vault history
     const savedIndex = localStorage.getItem(storageKey);
     if (savedIndex !== null) {
       activeParagraphIndex = parseInt(savedIndex, 10);
     }
   }
   
+  // Render paragraphs based on the outcome of our check
   buildAllRedactedBlocks(); 
 
+  // AUTOMATIC ENTRY DECRYPTION: Start typing right away without requiring a button click
   if (activeParagraphIndex < paragraphs.length) {
     revealLoop();
   }
 } 
 
+// Generates the paragraphs immediately, honoring their previous decryption history
 function buildAllRedactedBlocks() { 
   const paragraphElement = document.getElementById("typewriter-p"); 
   if (!paragraphElement) return; 
   
   for (let p = 0; p < paragraphs.length; p++) { 
+    // Save the exact array index where this paragraph section begins
     paragraphStartIndices.push(screenArray.length); 
 
-    // FIX: Kept ONLY the vertical line drops (\n\n) so paragraphs stay separated.
-    // Removed all manual space strings (" ") from the script data array array.
+    // Add line drops and structural layout spaces to the array matrix
     if (p > 0) { 
-      screenArray.push("\n\n"); 
+      screenArray.push("\n\n", " ", " ", " ", " "); 
+    } else {
+      screenArray.push(" ", " ", " ", " ");
     } 
     
     const text = paragraphs[p]; 
     
+    // CRUCIAL SYSTEM LOGIC: If they already unredacted this section before, load the real letters!
     if (p < activeParagraphIndex) {
       for (let i = 0; i < text.length; i++) {
         screenArray.push(text.charAt(i));
       }
     } else {
+      // Otherwise, keep it loaded as encrypted blocks
       for (let i = 0; i < text.length; i++) { 
         let char = text.charAt(i); 
         if (char === " ") { 
@@ -66,11 +78,12 @@ function buildAllRedactedBlocks() {
     }
   } 
   
+  // Render current system loadout state to the screen
   paragraphElement.textContent = screenArray.join(""); 
   
-  // FIX: Resetting calculations to remove hardcoded space skip numbers (+5 / +4)
+  // Initialize our decryption loop tracker position based on the next unredacted block
   if (activeParagraphIndex < paragraphs.length) {
-    revealIndex = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 1 : 0); 
+    revealIndex = paragraphStartIndices[activeParagraphIndex] + (activeParagraphIndex > 0 ? 5 : 4); 
   }
 } 
 
@@ -79,8 +92,7 @@ function revealLoop() {
   const currentText = paragraphs[activeParagraphIndex]; 
   const startPos = paragraphStartIndices[activeParagraphIndex]; 
   
-  // FIX: Clean math matching our zero-space structure profile bounds
-  const offset = activeParagraphIndex > 0 ? 1 : 0;
+  const offset = activeParagraphIndex > 0 ? 5 : 4;
   const endPos = startPos + offset + currentText.length; 
   
   if (paragraphElement && revealIndex < endPos) { 
@@ -93,13 +105,17 @@ function revealLoop() {
     setTimeout(revealLoop, speed); 
   } else if (paragraphElement) { 
     activeParagraphIndex++; 
+    
+    // SAVE TO VAULT: Remember that they successfully decrypted this paragraph stage
     localStorage.setItem(storageKey, activeParagraphIndex);
     
     if (activeParagraphIndex < paragraphs.length) { 
-      revealIndex = paragraphStartIndices[activeParagraphIndex] + 1; 
+      revealIndex = paragraphStartIndices[activeParagraphIndex] + 5; 
+      // AUTOMATIC CHAIN RUN: Instantly trigger the next paragraph sequence without stopping
       revealLoop();
     } 
   } 
 } 
 
+// THE PARTY STARTER
 window.addEventListener("DOMContentLoaded", main);
