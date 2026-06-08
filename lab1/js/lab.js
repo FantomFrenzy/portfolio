@@ -4,8 +4,8 @@
 
 // Constants - Your exact socials paragraphs
 const paragraphs = [ 
-  "Primary database module tracking ongoing illustrations, design notes, and character layout sheets. This interface aggregates rough concept sketches, atmospheric environment adjustments, and chronological workflow progression metrics from current game development assets.", 
-  "Operational frequency: Frequent narrative stream updates focusing on the structural friction between stark monochromatic contrasts and underlying dark realism." 
+  "Overview: Primary database module updating on the latest and ongoing illustration, assets, and progress on a game's development process.", 
+  "Operational Frequency: Consistently Inconsistent."
 ]; 
 
 let activeParagraphIndex = 0;   // Tracks which paragraph section we are actively unredacting 
