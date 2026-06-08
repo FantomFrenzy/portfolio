@@ -32,3 +32,49 @@ p {
   display: block;       
   margin: 10px auto;    /* Keeps only the photo centered */
 }
+
+ .game-photo-extras {
+  max-width: 800px;     /* Holds at 500px when expanding */
+  width: 100%;          /* Shrinks dynamically according to the minor-section */
+  height: auto;         /* Maintains perfect proportions without stretching */
+  display: block;       
+  margin: 10px auto;    /* Keeps only the photo centered */
+}
+
+/* ==========================================================================
+   ADDED: THIRD COLUMN MULTI-ROW ALIGNMENT RULES
+   ========================================================================== */
+
+/* Sets up Column 3 as a vertical layout block to stack Row 1 on top of Row 2 */
+.documentation-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Vertical gap spacing between the image row and the link button */
+}
+
+/* ROW 1: Forces your extra game photos to align horizontally side-by-side */
+.game-photo-row {
+  display: flex;
+  flex-direction: row;
+  gap: 15px; /* Clean horizontal spacing gap between the two images */
+  width: 100%;
+}
+
+/* Forces the images to divide the horizontal row space evenly (50% split) */
+.game-photo-row .game-photo-extras {
+  flex: 1;
+  margin: 0; /* Clears out your default centering margins during row alignment */
+}
+
+/* ROW 2: Centers your document anchor link perfectly on the line below */
+.doc-link-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.doc-link-container a {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  display: inline-block;
+}
