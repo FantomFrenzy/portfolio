@@ -4,7 +4,7 @@
 
 // Constants - Your exact socials paragraphs
 const paragraphs = [ 
-  "Overview: Primary database module updating on the latest and ongoing illustration, assets, and progress on a game's development process.", 
+  "Overview: Centralized database ledger logging active production metrics, conceptual illustration pipelines, asset deployment configurations, and ongoing software optimization lifecycle benchmarks.", 
   "Operational Frequency: Consistently Inconsistent."
 ]; 
 
