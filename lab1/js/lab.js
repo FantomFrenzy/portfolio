@@ -18,31 +18,26 @@ const storageKey = "highestUnredactedSocial"; // Isolated tracking vault for you
 function main() { 
   console.log("Socials automated decryption terminal initialized."); 
   
-  // FIX: Detect EXACTLY how the page was loaded
+  // Detect if the user performed a hard browser page refresh
   const navigationTiming = performance.getEntriesByType("navigation")[0]; 
   
-  if (navigationTiming) {
-    if (navigationTiming.type === "reload") {
-      // Hard refresh: wipe cache and force animation from scratch
-      localStorage.removeItem(storageKey);
-      activeParagraphIndex = 0;
-      console.log("Browser refresh detected: System state reset to redacted.");
-    } else if (navigationTiming.type === "navigate") {
-      // Fresh navigation click from home page: always wipe past history to trigger the typing effect!
-      localStorage.removeItem(storageKey);
-      activeParagraphIndex = 0;
-      console.log("Fresh navigation link entry: Triggering animation sequence.");
-    } else {
-      // Back/Forward buttons or other sessions: pull cached completion layout
-      const savedIndex = localStorage.getItem(storageKey);
-      if (savedIndex !== null) {
-        activeParagraphIndex = parseInt(savedIndex, 10);
-      }
-    }
-  } else {
-    // Safari/Older browser fallback
+  if (navigationTiming && navigationTiming.type === "reload") {
+    // Hard refresh explicitly clears the memory key to force a clean re-type animation
     localStorage.removeItem(storageKey);
     activeParagraphIndex = 0;
+    console.log("Browser refresh detected: System state reset to redacted.");
+  } else {
+    // Hyperlink navigation click or page entry layout: check if they have a saved session
+    const savedIndex = localStorage.getItem(storageKey);
+    if (savedIndex !== null) {
+      // If a save key exists, lock it in so it stays statically unredacted
+      activeParagraphIndex = parseInt(savedIndex, 10);
+      console.log("Existing user session found. Restoring static data state.");
+    } else {
+      // If no save key exists (absolute first visit), start from scratch!
+      activeParagraphIndex = 0;
+      console.log("Absolute first visit detected. Executing typing stream.");
+    }
   }
   
   // Render paragraphs based on the outcome of our check
