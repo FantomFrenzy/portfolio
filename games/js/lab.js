@@ -4,7 +4,7 @@
 
 // Constants - Your exact socials paragraphs
 const paragraphs = [ 
-  "Overview:A collection of playable media built on tension, texture, and emotional weight. Whether navigating narratives, systems, or environments, these diverse projects invite you to uncover what lies beneath the unsettling and the uncanny."
+  "Overview: A collection of playable media built on tension, texture, and emotional weight. Whether navigating narratives, systems, or environments, these diverse projects invite you to uncover what lies beneath the unsettling and the uncanny."
 ]; 
 
 let activeParagraphIndex = 0;   // Tracks which paragraph section we are actively unredacting 
