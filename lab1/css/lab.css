@@ -25,10 +25,12 @@ p {
   line-height: 1.6;
 }
 
+/* THE OPTIMIZED GLITCHING INSTAGRAM ICON LOGO */
 .ig-logo {
-  max-width: 64px;     /* Holds at 64px when expanding */
-  width: 100%;          /* Shrinks dynamically according to the minor-section */
-  height: auto;         /* Maintains perfect proportions without stretching */
-  display: block;       
-  margin: 10px auto;    /* Keeps only the photo centered */
+  max-width: 64px;       /* Holds at 64px when expanding */
+  width: 100%;           /* Shrinks dynamically according to the minor-section */
+  height: auto;          /* Maintains perfect proportions without stretching */
+  display: inline-block; /* Changed to inline-block so it twitches seamlessly with the text link */
+  margin: 10px auto;     
+  vertical-align: middle;
 }
