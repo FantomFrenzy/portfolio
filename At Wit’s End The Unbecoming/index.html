@@ -1,52 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- This title is used for tabs and bookmarks -->
-	<title>Lab X - Subject/Topic</title>
-
-	<!-- Use UTF character set, a good idea with any webpage -->
-  	<meta charset="UTF-8" />
-	<!-- Set viewport so page remains consistently scaled w narrow devices -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!-- Include a sitewide CSS file for consistent styling across the site -->
-	<link rel="stylesheet" type="text/css" href="../css/site.css">
-	<!-- Lab-specifc CSS file for any special styling of this particular page -->
-	<link rel="stylesheet" type="text/css" href="css/lab.css">
-	
-	<!-- load jQuery library to make javascript easier (must be above our lab js)-->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<!-- Link to javascript file - DEFER waits until all elements are rendered -->
-	<script type="text/javascript" src="./js/lab.js" DEFER></script>
+  <!-- This title is used for tabs and bookmarks -->
+  <title>At Wit’s End: The Unbecoming</title>
+  <!-- Use UTF character set, a good idea with any webpage -->
+  <meta charset="UTF-8" />
+  <!-- Set viewport so page remains consistently scaled w narrow devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Include a sitewide CSS file for consistent styling across the site -->
+  <link rel="stylesheet" type="text/css" href="../css/site.css">
+  <!-- Lab-specifc CSS file for any special styling of this particular page -->
+  <link rel="stylesheet" type="text/css" href="css/lab.css">
+  <!-- load jQuery library to make javascript easier (must be above our lab js)-->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Link to javascript file - DEFER waits until all elements are rendered -->
+  <script type="text/javascript" src="./js/lab.js" DEFER></script>
 </head>
 <body>
-	<!-- Style this page by changing the CSS in ../css/site.css or css/lab.css -->
-	<main id="content">
-		<section>
-			<h1>Lab X - Subject/Topic</h1>
-			<div class="minor-section">
-					<h2>Challenge</h2>
-					<p>Restate the challenge of the lab here.</p>
-			</div>
+  <!-- Style this page by changing the CSS in ../css/site.css or css/lab.css -->
+  <main id="content">
+    <section>
+      <!-- FIX: Added missing closing quote to the heading class selector -->
+      <h1 class="text-ctr">At Wit’s End: The Unbecoming</h1>
+      
+      <!-- COLUMN CONTAINER: Side-by-side execution zone for Column 1 & 2 -->
+      <div class="column-container">
+        
+        <!-- Column 1: Game & Description -->
+        <div class="minor-section">
+          <!-- Note that all filenames use lowercase and no spaces -->
+          <img class="game-photo " src="./img/at_wits_end_unbecoming_logo.jpg">
+          <h2 class="text-ctr" style="font-size: 20px; margin-top: 0; margin-bottom: 10px;">June 2025 | Table-Top RPG | Solo Project</h2>
+          
+          <div class="link-section">
+            <h3 class="text-ctr" style="font-size: 30px; margin-top: 0; margin-bottom: 10px;">System Directory</h3>
+            <nav id="links">
+              <ul>
+                <li><a href="../games/index.html" class="link-fidget">[ Return to Menu Page ]</a></li>
+				<li><a href="../index.html" class="link-fidget">[ Return to Main Page ]</a></li>
+              </ul>
+            </nav>
+			<br><br>
+			<h3 class="text-ctr" style="font-size: 30px; margin-top: 0; margin-bottom: 10px;">Games Directory</h3>
+            <nav id="links">
+              <ul>
+				<li><a href="../Schrödinger’s Gambit/index.html" class="link-fidget">[ Schrödinger’s Gambit ]</a></li>
+				<li><a href="../The Obscura Archives/index.html" class="link-fidget">[ The Obscura Archives ]</a></li>
+              </ul>
+            </nav>
+          </div>		  
+        </div>
 
-			<div class="minor-section">
-					<h2>Problems</h2>
-					<p>What problems arose? How did you solve them? </p>
-			</div>
+        <!-- Column 2: Artist Statement. -->
+        <div class="minor-section">
+          <!-- Feed Metadata Details -->
+          <!-- The JS engine targets this ID, applies your layout indentation, and unredacts the content -->
+          <p id="typewriter-p" class="flashing-cursor-js"></p>
+        </div>
 
-			<div class="minor-section">
-					<h2>Reflection</h2>
-					<p>Put your reflections about this assignment here. How did it go? What kind of energy did you put into the assignment? </p>
-			</div>
+      </div> 
+      <!-- FIX: Container explicitly closes here so Column 3 stays separate -->
 
-			<div class="minor-section">
-					<h2>Results</h2>
-					<div id="output"></div>
-			</div>
-		</section>
-		<nav id="links">
-			<!-- Put links to other pages (including the homepage) here. -->
-		</nav>
-	</main>
+      <!-- Column 3: Additional Images & Documentation (Full-width row underneath) -->
+      <div class="minor-section documentation-block" style="margin-top: 15px; margin-bottom: 15px;">
+        
+        <!-- Row 1: Image and Image Container -->
+        <div class="game-photo-row">
+          <img class="game-photo-extras" src="./img/at_wits_end_the_unbecoming_jenga_tower.jpg" alt="Gameplay Setup">
+        </div>
+        
+        <!-- Row 2: Link to Documentation -->
+        <div class="doc-link-container">
+          <a href="https://drive.google.com/file/d/1HrwLva85fppaiaMvMC0ZNxHO88CqMWG7/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-fidget" style="font-size: 30px; margin-top: 0; margin-bottom: 10px;">
+            [ Access System Documentation ]
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
 </body>
 </html>
