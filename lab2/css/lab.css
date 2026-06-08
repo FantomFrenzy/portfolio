@@ -17,6 +17,20 @@
   margin-top: 0;
 }
 
+/* --- THE NEW LIST FIXES --- */
+/* 1. Remove bullet points and default indentation padding from ALL lists on this page */
+.minor-section ul {
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 2. Force every single list item row to perfectly center itself inside its menu container */
+.minor-section li {
+  text-align: center !important;
+  margin-bottom: 10px; /* Adds a clean vertical gap between your game links */
+}
+
 p {
   font-family: 'VT323', monospace !important;
   font-size: 22px !important;
