@@ -16,3 +16,41 @@
   color: #E2E8F0;
   margin-top: 0;
 }
+
+/* Base style for the streaming text elements */
+.type-line {
+  display: block;
+  overflow: hidden;
+  white-space: normal; /* Allows the paragraph to wrap cleanly into block lines */
+  max-height: 0;       /* Starts invisible with zero height */
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+/* PARAGRAPH 1: Unveils instantly on load over 3.5 seconds */
+.type-line.p1 {
+  animation: reveal-text-block 3.5s steps(120, end) forwards;
+}
+
+/* PARAGRAPH 2: Waits 3.5 seconds for P1 to complete, then begins typing */
+.type-line.p2 {
+  animation: reveal-text-block 2.5s steps(80, end) 3.5s forwards;
+}
+
+/* THE TIMELINE ENGINE: Expands height smoothly so layout doesn't jump */
+@keyframes reveal-text-block {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  1% {
+    max-height: 500px; /* Gives plenty of room for multi-line text wrapping */
+    opacity: 1;
+    clip-path: inset(0 100% 0 0); /* Masks the block from the right side */
+  }
+  100% {
+    max-height: 500px;
+    opacity: 1;
+    clip-path: inset(0 0 0 0);    /* Slides open completely to reveal text */
+  }
+}
